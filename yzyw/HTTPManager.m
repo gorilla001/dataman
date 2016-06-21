@@ -112,4 +112,12 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
                            failure:failure];
 }
 
++ (void)getApps:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [HTTPManager requestWithMethod:RequestMethodTypeGet
+                               url:@"/api/v3/apps"
+                         parameter:nil
+                           success:success
+                           failure:failure];
+}
 @end
