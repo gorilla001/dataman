@@ -54,7 +54,7 @@ UIScrollViewDelegate>
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
-    [ self getVegData];
+    [self getData];
 }
 
 - (void)setup
@@ -106,7 +106,7 @@ UIScrollViewDelegate>
 
 
 
-- (void)getVegData
+- (void)getData
 {
     [self showLoading];
 //    [self getVegSlides];
@@ -226,7 +226,7 @@ UIScrollViewDelegate>
         _collectionView.contentInset = UIEdgeInsetsMake(HEADERHEIGHT, 0, 0, 0);
         [_collectionView addSubview:self.header];
         
-        MJRefreshNormalHeader *refreshheader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getVegData)];
+        MJRefreshNormalHeader *refreshheader = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
         refreshheader.ignoredScrollViewContentInsetTop = HEADERHEIGHT;
         refreshheader.lastUpdatedTimeLabel.hidden = YES;
         _collectionView.header = refreshheader;
