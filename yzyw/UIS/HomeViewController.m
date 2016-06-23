@@ -1,22 +1,13 @@
-//
-//  VegViewController.m
-//  Lynp
-//
-//  Created by nmg on 1/11/16.
-//  Copyright (c) 2015. All rights reserved.
-//
-
 #import "HomeViewController.h"
 #import "ItemCell.h"
 #import "ItemSectionHeader.h"
 #import "HomeHeader.h"
 #import <MJRefresh.h>
+#import "ItemDetailViewController.h"
 
 #define ITEMWIDTH (290/2.0)
 #define ITEMHEIGHT 150
 #define HEADERHEIGHT  210
-
-#import "ItemDetailViewController.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,
 UICollectionViewDelegate,
@@ -42,8 +33,6 @@ UIScrollViewDelegate>
         [self layoutNavigationBar];
         _listData = [NSMutableArray arrayWithCapacity:5];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer:) name:@"STOPTIMER" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCaiData) name:@"REFRESHCAIHOMEDATA" object:nil];
     }
     return self;
 }
@@ -80,7 +69,7 @@ UIScrollViewDelegate>
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//- (void)getVegSlides
+//- (void)getCategoriesSlides
 //{
 //    [HTTPManager getVegSlides:^(NSMutableArray *response) {
 //        
@@ -98,12 +87,10 @@ UIScrollViewDelegate>
     
     [HTTPManager getCategories:^(id response) {
         
-        DBLog(@"%@", response);
         [self.collectionView.header endRefreshing];
         self.collectionView.footer.hidden = NO;
         
         _items = response[@"data"];
-        DBLog(@"%@", _items);
         
         [_listData removeAllObjects];
         [_listData addObjectsFromArray:_items];
@@ -188,18 +175,9 @@ UIScrollViewDelegate>
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-#pragma mark - User Action
-- (void)pushAllCaiPage:(id )sender
+- (void)getMoreCategories:(id)sender
 {
-    //    HomeViewController *controller = [[HomeViewController alloc] init];
-    //    controller.hidesBottomBarWhenPushed = YES;
-    //    [self.navigationController pushViewController:controller animated:YES];
-}
-
-
-- (void)getMoreVegs:(id)sender
-{
-    NSString *lastid = [_listData lastObject][@"id"];
+//    NSString *lastid = [_listData lastObject][@"id"];
 //    
 //    [HTTPManager getCategories:lastid success:^(NSMutableArray *response) {
 //        DBLog(@"response===%@",response);
@@ -223,17 +201,6 @@ UIScrollViewDelegate>
 //        
 //    }];
     
-}
-
-
-- (void)stopTimer:(NSNotification *)noti
-{
-    [self.header stopTimer];
-}
-
-- (void)reloadCaiData
-{
-    [self.collectionView.header beginRefreshing];
 }
 
 #pragma mark - Getter
@@ -266,7 +233,7 @@ UIScrollViewDelegate>
         //        [self getVegs];
         
         
-        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreVegs:)];
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreCategories:)];
         _collectionView.footer = footer;
         _collectionView.footer.hidden = YES;
         
@@ -276,17 +243,6 @@ UIScrollViewDelegate>
     return _collectionView;
 }
 
-
-- (HomeHeader *)header
-{
-    if (!_header) {
-        _header = [HomeHeader new];
-        _header.frame = CGRectMake(0, -(HEADERHEIGHT), SCREEN_WIDTH,HEADERHEIGHT);
-        [_header.allCaiBtn addTarget:self action:@selector(pushAllCaiPage:) forControlEvents:UIControlEventTouchUpInside];
-        _header.delegate = self;
-    }
-    return _header;
-}
 
 - (UIRectEdge)edgesForExtendedLayout
 {
@@ -309,136 +265,5 @@ UIScrollViewDelegate>
     
     return _scrollView;
 }
-
-
-
-//guide page
-- (void)showGuidePage
-{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.window addSubview:self.scrollView];
-    
-    NSArray *names = nil;
-    
-    
-    if ((SCREEN_HEIGHT == 480 && SCREEN_WIDTH == 320)||(SCREEN_WIDTH == 640/2.0 && SCREEN_HEIGHT == 960/2.0)) {
-        names = @[@"640-960_1.jpg",@"640-960_2.jpg",@"640-960_3.jpg"];
-    }else if (SCREEN_WIDTH == 640/2.0 && SCREEN_HEIGHT == 1136/2.0) {
-        names = @[@"640-1136_1.jpg",@"640-1136_2.jpg",@"640-1136_3.jpg"];
-    }else if (SCREEN_WIDTH == 750/2.0 && SCREEN_HEIGHT == 1334/2.0) {
-        names = @[@"750-1334_1.jpg",@"750-1334_2.jpg",@"750-1334_3.jpg"];
-    }else{
-        names = @[@"1242-2202_1.jpg",@"1242-2202_2.jpg",@"1242-2202_3.jpg"];
-    }
-    
-    for (NSInteger i = 0 ; i < 3; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        imageView.image = [UIImage ew_imageWithContentOfFile:names[i]];
-        [_scrollView addSubview:imageView];
-        /*
-         if (i == 2) {
-         
-         imageView.userInteractionEnabled = YES;
-         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(70, SCREEN_HEIGHT-50, SCREEN_WIDTH-140, 40)];
-         [btn setBackgroundImage:[UIImage imageNamed:@"launch_btn_1"] forState:UIControlStateNormal];
-         [btn setBackgroundImage:[UIImage imageNamed:@"launch_btn_2"] forState:UIControlStateSelected];
-         [btn setTitle:@"立即体验" forState:UIControlStateNormal];
-         [btn setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
-         [btn addTarget:self action:@selector(removeGuide) forControlEvents:UIControlEventTouchUpInside];
-         btn.titleLabel.font = FONT(14);
-         [imageView addSubview:btn];
-         }
-         */
-        
-    }
-}
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView == _scrollView) {
-        DBLog(@"-------%@",@(scrollView.contentOffset.x));
-        if (scrollView.contentOffset.x > SCREEN_WIDTH*2+60) {
-            [self removeGuide];
-        }
-    }
-}
-
-
-- (void)removeGuide
-{
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        self.scrollView.left = 0-SCREEN_WIDTH;
-        
-    } completion:^(BOOL finished) {
-        
-        [self.scrollView removeFromSuperview];
-        [self setup];
-        
-        [EWUtils deleteObject:@"GUIDEVIEW"];
-        
-        [EWUtils setObject:[EWUtils ew_bundleVersion] key:@"APPVERSION"];
-        
-        [self.collectionView.header beginRefreshing];
-        
-        
-    }];
-    
-}
-
-
-#pragma mark - Add guid
-- (void)showGuideView
-{
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    imageView.userInteractionEnabled = YES;
-    imageView.tag = 1024;
-    DBLog(@"frame===%@",NSStringFromCGRect(imageView.frame));
-    
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushCai)];
-    //    [imageView addGestureRecognizer:tap];
-    //    tap = nil;
-    
-    DeviceResolution device =  [EWUtils ew_deviceResolution];
-    
-    
-    if (device == iPhone_320_480 || device == iPhone_640_960) {
-        imageView.image = [UIImage imageNamed:@"960-x"];
-    }else if (device == iPhone_640_1136){
-        imageView.image = [UIImage imageNamed:@"1136"];
-    }else if (device == iPhone_750_1334){
-        imageView.image = [UIImage imageNamed:@"1334"];
-    }else{
-        imageView.image = [UIImage imageNamed:@"2208"];
-    }
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = CLEAR_COLOR;
-    [btn addTarget:self action:@selector(pushCai) forControlEvents:UIControlEventTouchUpInside];
-    
-    btn.frame = CGRectMake(0, 216/2.0+64+20+31, SCREEN_WIDTH, 112);
-    [imageView addSubview:btn];
-    
-    [UIView transitionWithView:imageView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop animations:^{
-        [[APPDELEGATE window] addSubview:imageView];
-        
-    } completion:nil];
-    
-}
-
-- (void)pushCai
-{
-    UIView * temp = [[APPDELEGATE window] viewWithTag:1024];
-    
-    [UIView transitionWithView:temp duration:0.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        [temp removeFromSuperview];
-    } completion:^(BOOL finished) {
-        [self pushAllCaiPage:nil];
-    }];
-}
-
 
 @end
