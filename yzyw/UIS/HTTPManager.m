@@ -10,17 +10,15 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
 {
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
     
+    manager.requestSerializer.timeoutInterval = 10;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",nil];
     manager.requestSerializer.HTTPShouldHandleCookies = YES;
     
     [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@", [Lockbox unarchiveObjectForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
     manager.operationQueue.maxConcurrentOperationCount = 5;
-    manager.requestSerializer.timeoutInterval = 10;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    DBLog(@"-----------------------%@", manager.requestSerializer.HTTPRequestHeaders);
-    
     
     switch (methodType) {
         case RequestMethodTypeGet:
