@@ -13,7 +13,7 @@
 #import <MJRefresh.h>
 
 #define ITEMWIDTH (290/2.0)
-#define ITEMHEIGHT ((232+146)/2.0)
+#define ITEMHEIGHT 150
 #define HEADERHEIGHT  210
 
 #import "ItemDetailViewController.h"

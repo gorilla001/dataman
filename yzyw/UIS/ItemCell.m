@@ -38,7 +38,7 @@
 {
     [super layoutSubviews];
     
-    self.photo.frame = CGRectScaleXY(0, 0, 290/2.0, 232/2.0);
+    self.photo.frame = CGRectScaleXY(0, 0, 290/2.0, 100);
     self.name.frame = CGRectScaleXY(10, self.photo.bottom+10, self.width-20, 12);
 }
 
