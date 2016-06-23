@@ -74,31 +74,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)changeToMainPage
-{
-    UINavigationController *home = [[UINavigationController alloc]initWithRootViewController:HomeViewController.new];
-    
-    UINavigationController *new = [[UINavigationController alloc] initWithRootViewController:NewViewController.new];
-    
-    
-    
-    UINavigationController *warn = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
-    
-    NSArray *titles = @[@"服务", @"购物车", @"我的"];
-    NSArray *images = @[@"home_unselected", @"cart_unselected", @"mine_unselected"];
-    NSArray *selectimages = @[@"home_selected",@"cart_selected",@"mine_selected"];
-    
-    _tabbarController = [[UITabBarController alloc] init];
-    
-    _tabbarController.viewControllers = @[home,new,warn];
-    [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
-    
-    [self.navigationController pushViewController:_tabbarController animated:YES];
-    
-//    self.window.rootViewController = _tabbarController;
-}
-
-
 - (void)submit:(UIButton *)sender
 {
     [self.view endEditing:YES];
@@ -109,16 +84,14 @@
         [HTTPManager login: [_username text]
                     passwd: [_password text]
                    success:^(id response) {
-                       DBLog(@"%@", response);
                        [self hideLoading];
                        if ([response[@"code"] integerValue]){
                            [self showErrorStatusWithTitle:@"用户名或密码错误"];
                            
                        }
                        else{
-                           [Lockbox archiveObject:[NSString stringWithFormat:@"%@", response[@"data"][@"token"]]
-                                           forKey:@"token"];
-                           [self changeToMainPage];
+                           [Lockbox archiveObject:[NSString stringWithFormat:@"%@", response[@"data"][@"token"]] forKey:@"token"];
+                           [self.navigationController popViewControllerAnimated:true];
                        }
                        
                    } failure:^(NSError *err) {

@@ -9,6 +9,12 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
+#import "HomeViewController.h"
+#import "NewViewController.h"
+#import "WarnViewController.h"
+
+#import "Lockbox.h"
+
 @implementation AppDelegate
 
 
@@ -21,7 +27,7 @@
     [self registRemoteNotification];
     [self registLocalNotification];
     
-    [self login];
+    [self changeToMainPage];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //update
@@ -82,13 +88,30 @@
 {
 }
 
-
-#pragma mark - app update
-
-- (void)login
+- (void)changeToMainPage
 {
-    UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
-    self.window.rootViewController = navLogin;
+    if ([Lockbox unarchiveObjectForKey:@"token"]){
+        UINavigationController *home = [[UINavigationController alloc]initWithRootViewController:HomeViewController.new];
+    
+        UINavigationController *new = [[UINavigationController alloc] initWithRootViewController:NewViewController.new];
+    
+        UINavigationController *warn = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
+    
+        NSArray *titles = @[@"服务", @"购物车", @"我的"];
+        NSArray *images = @[@"home_unselected", @"cart_unselected", @"mine_unselected"];
+        NSArray *selectimages = @[@"home_selected",@"cart_selected",@"mine_selected"];
+    
+        _tabbarController = [[UITabBarController alloc] init];
+    
+        _tabbarController.viewControllers = @[home,new,warn];
+        [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
+    
+        self.window.rootViewController = _tabbarController;
+    }else{
+        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+        
+        self.window.rootViewController = navLogin;
+    }
 }
 
 @end
