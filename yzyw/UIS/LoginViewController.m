@@ -84,7 +84,7 @@
     
     UINavigationController *warn = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
     
-    NSArray *titles = @[@"应用", @"发布", @"告警"];
+    NSArray *titles = @[@"服务", @"购物车", @"我的"];
     NSArray *images = @[@"home_unselected", @"cart_unselected", @"mine_unselected"];
     NSArray *selectimages = @[@"home_selected",@"cart_selected",@"mine_selected"];
     
