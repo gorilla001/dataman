@@ -102,7 +102,6 @@
 - (void)submit:(UIButton *)sender
 {
     [self.view endEditing:YES];
-      [self changeToMainPage];
     
     if ([_username hasText] && [_password hasText]){
         
