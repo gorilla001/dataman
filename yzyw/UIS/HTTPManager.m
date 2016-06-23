@@ -117,7 +117,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
 + (void)getCategories:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     [HTTPManager requestWithMethod:RequestMethodTypeGet
-                               url:@"/api/v3/repositories/categories"
+                               url:@"/api/v3/repositories"
                          parameter:nil
                            success:success
                            failure:failure];
