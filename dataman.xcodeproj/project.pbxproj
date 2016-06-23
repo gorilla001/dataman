@@ -71,7 +71,7 @@
 /* Begin PBXFileReference section */
 		3121FA0805AFE459BBE8531C /* Pods-yzyw.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yzyw.release.xcconfig"; path = "Pods/Target Support Files/Pods-yzyw/Pods-yzyw.release.xcconfig"; sourceTree = "<group>"; };
 		399AC76AA797C8E371CE03DB /* Pods-yzyw.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yzyw.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yzyw/Pods-yzyw.debug.xcconfig"; sourceTree = "<group>"; };
-		5B5647131C6CB649008EB890 /* yzyw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yzyw.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5647131C6CB649008EB890 /* dataman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dataman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5647171C6CB649008EB890 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5B56471C1C6CB649008EB890 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B56471F1C6CB649008EB890 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		EFA6450F1D0ACDD3009A9ADF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFE109811C6DED2F004A869F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFE109821C6DED2F004A869F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EFE109891C6DF0C3004A869F /* yzyw.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yzyw.pch; sourceTree = "<group>"; };
+		EFE109891C6DF0C3004A869F /* dataman.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataman.pch; sourceTree = "<group>"; };
 		EFE109971C6DF847004A869F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EFE109991C6DF851004A869F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EFE1099B1C6DF885004A869F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -225,7 +225,7 @@
 		5B56470A1C6CB649008EB890 = {
 			isa = PBXGroup;
 			children = (
-				5B5647151C6CB649008EB890 /* yzyw */,
+				5B5647151C6CB649008EB890 /* dataman */,
 				5B5647141C6CB649008EB890 /* Products */,
 				AB6AC9E6F635959B14208B0F /* Pods */,
 				530146F665D7C0E6BF1D5440 /* Frameworks */,
@@ -235,12 +235,12 @@
 		5B5647141C6CB649008EB890 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B5647131C6CB649008EB890 /* yzyw.app */,
+				5B5647131C6CB649008EB890 /* dataman.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5B5647151C6CB649008EB890 /* yzyw */ = {
+		5B5647151C6CB649008EB890 /* dataman */ = {
 			isa = PBXGroup;
 			children = (
 				9445074D1D1B80FA00C4DAE6 /* UIS */,
@@ -250,7 +250,7 @@
 				EF597CF91C6E1C0900CCBDBD /* Images.xcassets */,
 				EFA6450C1D0ACDD3009A9ADF /* Assets.xcassets */,
 				EFA6450D1D0ACDD3009A9ADF /* Base.lproj */,
-				EFE109891C6DF0C3004A869F /* yzyw.pch */,
+				EFE109891C6DF0C3004A869F /* dataman.pch */,
 				EFE109811C6DED2F004A869F /* AppDelegate.h */,
 				EFE109821C6DED2F004A869F /* AppDelegate.m */,
 				5B56471C1C6CB649008EB890 /* Assets.xcassets */,
@@ -258,6 +258,7 @@
 				5B5647211C6CB649008EB890 /* Info.plist */,
 				5B5647161C6CB649008EB890 /* Supporting Files */,
 			);
+			name = dataman;
 			path = yzyw;
 			sourceTree = "<group>";
 		};
@@ -425,9 +426,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B5647121C6CB649008EB890 /* yzyw */ = {
+		5B5647121C6CB649008EB890 /* dataman */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B5647241C6CB649008EB890 /* Build configuration list for PBXNativeTarget "yzyw" */;
+			buildConfigurationList = 5B5647241C6CB649008EB890 /* Build configuration list for PBXNativeTarget "dataman" */;
 			buildPhases = (
 				C90809F8707EA0099B790177 /* Check Pods Manifest.lock */,
 				5B56470F1C6CB649008EB890 /* Sources */,
@@ -440,9 +441,9 @@
 			);
 			dependencies = (
 			);
-			name = yzyw;
+			name = dataman;
 			productName = yzyw;
-			productReference = 5B5647131C6CB649008EB890 /* yzyw.app */;
+			productReference = 5B5647131C6CB649008EB890 /* dataman.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -460,7 +461,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5B56470E1C6CB649008EB890 /* Build configuration list for PBXProject "yzyw" */;
+			buildConfigurationList = 5B56470E1C6CB649008EB890 /* Build configuration list for PBXProject "dataman" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -474,7 +475,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B5647121C6CB649008EB890 /* yzyw */,
+				5B5647121C6CB649008EB890 /* dataman */,
 			);
 		};
 /* End PBXProject section */
@@ -706,7 +707,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/yzyw/Vendor/Alipay",
 				);
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/yzyw/yzyw.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/yzyw/dataman.pch";
 				INFOPLIST_FILE = yzyw/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -718,8 +719,8 @@
 					"$(PROJECT_DIR)/yzyw/Vendor/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/yzyw/Vendor/Easywork",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nmg.yzyw;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = nmg.dataman;
+				PRODUCT_NAME = dataman;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -736,7 +737,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/yzyw/Vendor/Alipay",
 				);
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/yzyw/yzyw.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/yzyw/dataman.pch";
 				INFOPLIST_FILE = yzyw/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -748,8 +749,8 @@
 					"$(PROJECT_DIR)/yzyw/Vendor/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/yzyw/Vendor/Easywork",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nmg.yzyw;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = nmg.dataman;
+				PRODUCT_NAME = dataman;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -757,7 +758,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B56470E1C6CB649008EB890 /* Build configuration list for PBXProject "yzyw" */ = {
+		5B56470E1C6CB649008EB890 /* Build configuration list for PBXProject "dataman" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B5647221C6CB649008EB890 /* Debug */,
@@ -766,7 +767,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B5647241C6CB649008EB890 /* Build configuration list for PBXNativeTarget "yzyw" */ = {
+		5B5647241C6CB649008EB890 /* Build configuration list for PBXNativeTarget "dataman" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B5647251C6CB649008EB890 /* Debug */,
