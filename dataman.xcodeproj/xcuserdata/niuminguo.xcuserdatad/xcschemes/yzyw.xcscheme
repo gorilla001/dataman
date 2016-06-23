@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5B5647121C6CB649008EB890"
-               BuildableName = "yzyw.app"
-               BlueprintName = "yzyw"
-               ReferencedContainer = "container:yzyw.xcodeproj">
+               BuildableName = "dataman.app"
+               BlueprintName = "dataman"
+               ReferencedContainer = "container:dataman.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5B5647121C6CB649008EB890"
-            BuildableName = "yzyw.app"
-            BlueprintName = "yzyw"
-            ReferencedContainer = "container:yzyw.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -56,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5B5647121C6CB649008EB890"
-            BuildableName = "yzyw.app"
-            BlueprintName = "yzyw"
-            ReferencedContainer = "container:yzyw.xcodeproj">
+            BuildableName = "dataman.app"
+            BlueprintName = "dataman"
+            ReferencedContainer = "container:dataman.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,16 +61,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5B5647121C6CB649008EB890"
-            BuildableName = "yzyw.app"
-            BlueprintName = "yzyw"
-            ReferencedContainer = "container:yzyw.xcodeproj">
+            BuildableName = "dataman.app"
+            BlueprintName = "dataman"
+            ReferencedContainer = "container:dataman.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
