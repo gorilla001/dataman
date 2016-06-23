@@ -40,7 +40,7 @@
 {
     [super layoutSubviews];
     
-    self.photo.frame = CGRectScaleXY(0, 0, 290/2.0, 100);
+    self.photo.frame = CGRectScaleXY(0, 0, 290/2.0, 150);
     self.line.frame = CGRectScaleXY(0, self.photo.bottom + 5, self.width, 1);
     self.name.frame = CGRectScaleXY(0, self.line.bottom+5, self.width-20, 30);
 }
@@ -57,7 +57,7 @@
 {
     if (!_name) {
         _name = [UILabel new];
-        _name.font = FONT(13);
+        _name.font = FONT(16);
         _name.textAlignment = NSTextAlignmentCenter;
     }
     return _name;

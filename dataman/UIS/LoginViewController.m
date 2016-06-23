@@ -201,7 +201,6 @@
     if (!_username) {
         _username = [[UITextField alloc] initWithFrame:CGRectMake(18, 0, 180, 56)];
         _username.font = FONT(15);
-        _username.keyboardType = UIKeyboardTypePhonePad;
         _username.placeholder = @"输入用户名";
     }
     return _username;
@@ -213,7 +212,6 @@
         _password = [[UITextField alloc] initWithFrame:CGRectMake(18, 56, self.textBack.width-36, 56)];
         _password.font = FONT(15);
         _password.placeholder = @"输入密码";
-//        _password.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _password;
 }

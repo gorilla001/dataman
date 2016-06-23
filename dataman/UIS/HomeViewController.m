@@ -6,7 +6,7 @@
 #import "ItemDetailViewController.h"
 
 #define ITEMWIDTH (290/2.0)
-#define ITEMHEIGHT 150
+#define ITEMHEIGHT 200
 #define HEADERHEIGHT  210
 
 @interface HomeViewController ()<UICollectionViewDataSource,
