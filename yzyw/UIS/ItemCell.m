@@ -7,6 +7,7 @@
 @interface ItemCell ()
 @property (nonatomic, strong) UIImageView *photo;
 @property (nonatomic, strong) UILabel *name;
+@property (nonatomic, strong) UIView *line;
 @end
 
 @implementation ItemCell
@@ -19,6 +20,7 @@
         self.clipsToBounds = YES;
         
         [self addSubview:self.photo];
+        [self addSubview:self.line];
         [self addSubview:self.name];
     }
     return self;
@@ -39,7 +41,8 @@
     [super layoutSubviews];
     
     self.photo.frame = CGRectScaleXY(0, 0, 290/2.0, 100);
-    self.name.frame = CGRectScaleXY(10, self.photo.bottom+10, self.width-20, 12);
+    self.line.frame = CGRectScaleXY(0, self.photo.bottom + 5, self.width, 1);
+    self.name.frame = CGRectScaleXY(0, self.line.bottom+5, self.width-20, 30);
 }
 
 - (UIImageView *)photo
@@ -58,6 +61,15 @@
         _name.textAlignment = NSTextAlignmentCenter;
     }
     return _name;
+}
+
+- (UIView *)line
+{
+    if (!_line) {
+        _line = [[UIView alloc] initWithFrame:CGRectZero];
+        _line.backgroundColor = RGB_COLOR(242, 242, 242);
+    }
+    return _line;
 }
 
 @end
