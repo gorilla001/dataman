@@ -20,24 +20,15 @@
     
     [self registRemoteNotification];
     [self registLocalNotification];
-    [self setupThirdparty];
     
-    
-    //init app
-    //[self initApp];
     [self login];
-    
-    //正式
-//    [self changeToMainPage];
-    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //update
         //[self appUpdate];
 
     });
-    
-    //db
+
     [[DBManager instance] createDB];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jump:) name:@"JUMP" object:nil];
@@ -92,47 +83,11 @@
 }
 
 
-- (void)setupThirdparty
-{
-    //UMENG
-//    [MobClick startWithAppkey:UMENG_KEY reportPolicy:BATCH channelId:@"WEB"];
-//    [MobClick setAppVersion:[EWUtils ew_bundleVersion]];
-//    [UMSocialData setAppKey:UMENG_KEY];
-//    [WXApi registerApp:WXKEY withDescription:@"有菜红包"];
-
-}
-
-
-//#pragma mark - page
-//- (void)changeToMainPage
-//{
-//    
-//    UINavigationController *home = [[UINavigationController alloc] initWithRootViewController:VegViewController.new];
-//    
-//    UINavigationController *car = [[UINavigationController alloc]initWithRootViewController:ShoppingCarViewController.new];
-//    
-//    UINavigationController *user = [[UINavigationController alloc]initWithRootViewController:UserViewController.new];
-//    
-//    NSArray *titles = @[@"集群", @"应用", @"告警"];
-//    NSArray *images = @[@"home_unselected", @"cart_unselected", @"mine_unselected"];
-//    NSArray *selectimages = @[@"home_selected",@"cart_selected",@"mine_selected"];
-//    
-//    _tabbarController = [[UITabBarController alloc] init];
-////    _tabbarController.viewControllers = @[home,combo,car,user];
-//    _tabbarController.viewControllers = @[home,car,user];
-//    [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
-//    
-//    self.window.rootViewController = _tabbarController;
-//}
-//
-
-
 #pragma mark - app update
 
 - (void)login
 {
     UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
-//    [self presentViewController:navLogin animated:YES completion:nil];
     self.window.rootViewController = navLogin;
 }
 
