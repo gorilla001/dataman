@@ -981,6 +981,7 @@
 		EFA9FD8F1C6F2BF30090F3DF /* mine_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_selected@3x.png"; sourceTree = "<group>"; };
 		EFA9FD9A1C72D8200090F3DF /* wxpay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wxpay@2x.png"; sourceTree = "<group>"; };
 		EFA9FD9C1C72DA430090F3DF /* alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alipay@2x.png"; sourceTree = "<group>"; };
+		EFB4E6D61D19627400D1F885 /* NewAppCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewAppCell.h; path = ../NewAppCell.h; sourceTree = "<group>"; };
 		EFE109811C6DED2F004A869F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFE109821C6DED2F004A869F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EFE109891C6DF0C3004A869F /* yzyw.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yzyw.pch; sourceTree = "<group>"; };
@@ -1070,6 +1071,7 @@
 				EF543F461CBBE66300457EE8 /* wxpay_unselected.png */,
 				EF597CFB1C6E1CD300CCBDBD /* Images */,
 				EF597CF91C6E1C0900CCBDBD /* Images.xcassets */,
+				EFB4E6D61D19627400D1F885 /* NewAppCell.h */,
 				EFA645061D0ACDD2009A9ADF /* AppCell.h */,
 				EFA645071D0ACDD2009A9ADF /* AppCell.m */,
 				EFA645081D0ACDD2009A9ADF /* AppDetailViewController.h */,

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CE35EB54E280693551BDD151'
+               BlueprintIdentifier = '26A4A7A81A099FBAF2650616'
                BlueprintName = 'DLRadioButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libDLRadioButton.a'>

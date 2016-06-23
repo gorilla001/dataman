@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0A9CE5EB4F3507D94F11BB5C'
-               BlueprintName = 'MBProgressHUD'
+               BlueprintIdentifier = 'FADA0ACFD729564C60914932'
+               BlueprintName = 'Lockbox'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMBProgressHUD.a'>
+               BuildableName = 'libLockbox.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

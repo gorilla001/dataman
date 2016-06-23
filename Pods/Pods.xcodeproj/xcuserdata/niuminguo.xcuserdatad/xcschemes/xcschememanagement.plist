@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Lockbox.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5323C15FB289BF0EFD571E56361017B7</key>
+		<key>3FC2CFAD218200DD706731875DD53241</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A942D74323072BC6F473F9CF98466D3</key>
+		<key>5323C15FB289BF0EFD571E56361017B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,17 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A90AC7C20B942664250C020E6F0B1A69</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B23B3D15FFC0FC9893968F478086D58D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E2D4C4B68BD61C6A5E151637956ADEDE</key>
+		<key>B961BCFB3AA43DE1BD5096286D937D48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFA24C45834E7CE47ACB6C3D7613EE19</key>
+		<key>F9FB958C5DA1C8A1732B06A9DEF543AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

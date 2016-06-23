@@ -2,6 +2,7 @@
 #import "AppViewController.h"
 #import "LoginViewController.h"
 #import "AppDetailViewController.h"
+#import <MJRefresh.h>
 
 #define CELL_HEIGHT   222/2.0
 #define BOTTOM_HEIGHT 60
@@ -12,12 +13,6 @@
 
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) NSMutableArray *listData;
-@property (nonatomic, strong) AddressInfo *address;
-
-@property (nonatomic, strong) NSString *markMessage;
-
-//@property (nonatomic, strong) UIView *emptyView;
-@property (nonatomic, strong) UIButton *loginBtn;
 
 @property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR;
 
@@ -49,6 +44,7 @@
     
     [self.view addSubview:self.listView];
     
+    [self.listView.header beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -135,6 +131,36 @@
     
 }
 
+- (void)pullToRefresh
+{
+    [HTTPManager getApps:^(NSMutableArray *response) {
+        
+        
+        [self.listView.header endRefreshing];
+        self.listView.footer.hidden = NO;
+        
+        
+        [_listData removeAllObjects];
+        [_listData addObjectsFromArray:response];
+        
+        DBLog(@"%@", _listData);
+        
+        [self.listView reloadData];
+        
+        if ([response count] <10){
+            self.listView.footer.hidden = YES;
+        }
+    } failure:^(NSError *err) {
+        [self.listView.header endRefreshing];
+        DBLog(@"%@", err);
+    }];
+}
+
+- (void)upToRefresh
+{
+    [self.listView.header endRefreshing];
+}
+
 
 #pragma mark - Getter
 - (UITableView *)listView
@@ -148,11 +174,14 @@
         _listView.showsHorizontalScrollIndicator = NO;
         _listView.showsVerticalScrollIndicator = NO;
         
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullToRefresh)];
+        header.lastUpdatedTimeLabel.hidden = YES;
+        _listView.header = header;
+        
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upToRefresh)];
+        _listView.footer = footer;
+        _listView.footer.hidden = YES;
     }
     return _listView;
-}
-
-- (void)showNotLoginPage
-{
 }
 @end

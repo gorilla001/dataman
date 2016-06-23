@@ -1,5 +1,6 @@
 
 #import "HTTPManager.h"
+#import "Lockbox.h"
 
 static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
 
@@ -13,9 +14,13 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
     manager.requestSerializer.HTTPShouldHandleCookies = YES;
     
     [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@", [Lockbox unarchiveObjectForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
     manager.operationQueue.maxConcurrentOperationCount = 5;
     manager.requestSerializer.timeoutInterval = 10;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    DBLog(@"-----------------------%@", manager.requestSerializer.HTTPRequestHeaders);
+    
     
     switch (methodType) {
         case RequestMethodTypeGet:
@@ -24,19 +29,9 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
             [manager GET:url parameters:parameter
                  success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                      if (success) {
-                         if ([url isEqualToString:@"/auth/init"]) {
-                             [EWUtils setObject:operation.response.allHeaderFields[@"X-Xsrftoken"] key:@"_xsrf"];
-                         }
-                         [EWUtils saveCookies];
+                    
                          success(responseObj);
-                         
-//    
-//                         if ([responseObj[@"errcode"] integerValue] == 403 || 2001==[responseObj[@"errcode"] integerValue]) {
-//                             //处理403的问题
-//                             POSTNOTIFICATION(@"ERROR403", nil);
-//                             
-//                         }
-                     }
+                    }
                  } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
                      if (failure) {
                          failure(error);

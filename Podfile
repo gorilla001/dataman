@@ -12,5 +12,6 @@ pod 'MJRefresh', '~> 2.3.2'
 pod 'FMDB', '~> 2.5'
 pod 'PureLayout', '~> 3.0.1'
 pod 'DLRadioButton', '~> 1.4'
+pod 'Lockbox'
 end
 

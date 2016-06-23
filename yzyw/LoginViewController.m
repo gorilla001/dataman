@@ -6,6 +6,8 @@
 #import "NewViewController.h"
 #import "WarnViewController.h"
 
+#import "Lockbox.h"
+
 @interface LoginViewController ()
 @property (nonatomic, strong) TPKeyboardAvoidingScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *backView;
@@ -102,33 +104,35 @@
     [self.view endEditing:YES];
       [self changeToMainPage];
     
-//    if ([_username hasText] && [_password hasText]){
-//        
-//        [self showLoading];
-//        [HTTPManager login: [_username text]
-//                    passwd: [_password text]
-//                   success:^(id response) {
-//                       DBLog(@"%@", response);
-//                       [self hideLoading];
-//                       if ([response[@"code"] integerValue]){
-//                           [self showErrorStatusWithTitle:@"用户名或密码错误"];
-//                           
-//                       }
-//                       else{
-//                           [self changeToMainPage];
-//                       }
-//                       
-//                   } failure:^(NSError *err) {
-//                       [self hideLoading];
-//                       [self showFailureStatusWithTitle:@"服务器繁忙，请稍后重试"];
-//                   }];
-//        
-//    }else{
-//        if (! [_username hasText] || ! [_password hasText]){
-//          
-//            [self showErrorStatusWithTitle:@"用户名或密码不能为空"];
-//        }
-//}
+    if ([_username hasText] && [_password hasText]){
+        
+        [self showLoading];
+        [HTTPManager login: [_username text]
+                    passwd: [_password text]
+                   success:^(id response) {
+                       DBLog(@"%@", response);
+                       [self hideLoading];
+                       if ([response[@"code"] integerValue]){
+                           [self showErrorStatusWithTitle:@"用户名或密码错误"];
+                           
+                       }
+                       else{
+                           [Lockbox archiveObject:[NSString stringWithFormat:@"%@", response[@"data"][@"token"]]
+                                           forKey:@"token"];
+                           [self changeToMainPage];
+                       }
+                       
+                   } failure:^(NSError *err) {
+                       [self hideLoading];
+                       [self showFailureStatusWithTitle:@"服务器繁忙，请稍后重试"];
+                   }];
+        
+    }else{
+        if (! [_username hasText] || ! [_password hasText]){
+          
+            [self showErrorStatusWithTitle:@"用户名或密码不能为空"];
+        }
+}
     
     
    
