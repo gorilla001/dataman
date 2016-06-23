@@ -35,4 +35,6 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
 
 + (void)getApps:(void (^)(id))success
         failure:(void (^)(NSError *))failure;
+
++ (void)getCategories:(void (^)(id))success failure:(void (^)(NSError *))failure;
 @end
