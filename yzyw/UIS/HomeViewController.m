@@ -80,29 +80,30 @@ UIScrollViewDelegate>
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)getVegSlides
+//- (void)getVegSlides
+//{
+//    [HTTPManager getVegSlides:^(NSMutableArray *response) {
+//        
+//        _slideData = response;
+//        
+//        [self.header configHomeHeader:response];
+//        
+//    } failure:^(NSError *err) {
+//        [self.collectionView.header endRefreshing];
+//    }];
+//    
+//}
+- (void)getCategories
 {
-    [HTTPManager getVegSlides:^(NSMutableArray *response) {
-        
-        _slideData = response;
-        
-        [self.header configHomeHeader:response];
-        
-    } failure:^(NSError *err) {
-        [self.collectionView.header endRefreshing];
-    }];
     
-}
-- (void)getVegs
-{
-    
-    [HTTPManager getVegs:nil success:^(NSMutableArray *response) {
+    [HTTPManager getCategories:^(id response) {
         
         DBLog(@"%@", response);
         [self.collectionView.header endRefreshing];
         self.collectionView.footer.hidden = NO;
         
-        _items = response;
+        _items = response[@"data"];
+        DBLog(@"%@", _items);
         
         [_listData removeAllObjects];
         [_listData addObjectsFromArray:_items];
@@ -121,8 +122,8 @@ UIScrollViewDelegate>
 - (void)getVegData
 {
     [self showLoading];
-    [self getVegSlides];
-    [self getVegs];
+//    [self getVegSlides];
+    [self getCategories];
     [self hideLoading];
 }
 
@@ -149,7 +150,7 @@ UIScrollViewDelegate>
 {
     ItemSectionHeader *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SECTIONHEADER" forIndexPath:indexPath];
     if (_items) {
-        head.titleLabel.text = @"蔬菜优选";
+        head.titleLabel.text = @"服务精选";
         head.line.hidden = NO;
     }else{
         head.titleLabel.text = nil;
@@ -199,28 +200,28 @@ UIScrollViewDelegate>
 - (void)getMoreVegs:(id)sender
 {
     NSString *lastid = [_listData lastObject][@"id"];
-    
-    [HTTPManager getVegs:lastid success:^(NSMutableArray *response) {
-        DBLog(@"response===%@",response);
-        
-        [self.collectionView.footer endRefreshing];
-        
-        if (response.count == 0) {
-            [self showErrorStatusWithTitle:@"没有更多商品了"];
-            self.collectionView.footer.hidden = YES;
-            return ;
-        }
-        
-        [_listData addObjectsFromArray:response];
-        [_collectionView reloadData];
-        
-        if (response.count < 8) {
-            self.collectionView.footer.hidden = YES;
-        }
-    } failure:^(NSError *err) {
-        [self.collectionView.footer endRefreshing];
-        
-    }];
+//    
+//    [HTTPManager getCategories:lastid success:^(NSMutableArray *response) {
+//        DBLog(@"response===%@",response);
+//        
+//        [self.collectionView.footer endRefreshing];
+//        
+//        if (response.count == 0) {
+//            [self showErrorStatusWithTitle:@"没有更多商品了"];
+//            self.collectionView.footer.hidden = YES;
+//            return ;
+//        }
+//        
+//        [_listData addObjectsFromArray:response];
+//        [_collectionView reloadData];
+//        
+//        if (response.count < 8) {
+//            self.collectionView.footer.hidden = YES;
+//        }
+//    } failure:^(NSError *err) {
+//        [self.collectionView.footer endRefreshing];
+//        
+//    }];
     
 }
 

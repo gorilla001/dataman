@@ -9,5 +9,12 @@
 #ifndef ItemSectionHeader_h
 #define ItemSectionHeader_h
 
+#import <UIKit/UIKit.h>
+
+@interface ItemSectionHeader : UICollectionReusableView
+@property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
 
 #endif /* ItemSectionHeader_h */

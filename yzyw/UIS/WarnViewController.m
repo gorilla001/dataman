@@ -1,7 +1,7 @@
 
 #import "WarnViewController.h"
 #import "LoginViewController.h"
-#import "AppDetailViewController.h"
+#import "ItemDetailViewController.h"
 
 #define CELL_HEIGHT   222/2.0
 #define BOTTOM_HEIGHT 60

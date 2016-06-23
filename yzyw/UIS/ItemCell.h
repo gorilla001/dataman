@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppCell : UICollectionViewCell
+@interface ItemCell : UICollectionViewCell
 
-- (void)configVegCell:data;
-
+- (void)configItemCell:data;
 @end
 

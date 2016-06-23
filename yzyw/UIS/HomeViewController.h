@@ -1,6 +1,6 @@
 
 #import "EWViewController.h"
 
-@interface AppViewController : EWViewController
+@interface HomeViewController : EWViewController
 
 @end

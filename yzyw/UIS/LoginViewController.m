@@ -2,7 +2,7 @@
 #import "LoginViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 
-#import "AppViewController.h"
+#import "HomeViewController.h"
 #import "NewViewController.h"
 #import "WarnViewController.h"
 
@@ -76,7 +76,7 @@
 
 - (void)changeToMainPage
 {
-    UINavigationController *app = [[UINavigationController alloc]initWithRootViewController:AppViewController.new];
+    UINavigationController *home = [[UINavigationController alloc]initWithRootViewController:HomeViewController.new];
     
     UINavigationController *new = [[UINavigationController alloc] initWithRootViewController:NewViewController.new];
     
@@ -90,7 +90,7 @@
     
     _tabbarController = [[UITabBarController alloc] init];
     
-    _tabbarController.viewControllers = @[app,new,warn];
+    _tabbarController.viewControllers = @[home,new,warn];
     [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
     [self.navigationController pushViewController:_tabbarController animated:YES];

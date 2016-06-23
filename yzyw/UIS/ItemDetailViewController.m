@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 nmg. All rights reserved.
 //
 
-#import "AppDetailViewController.h"
+#import "ItemDetailViewController.h"
 #import "LoginViewController.h"
 
 
-@interface AppDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ItemDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)NSDictionary *item;
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIButton *backBtn;
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation AppDetailViewController
+@implementation ItemDetailViewController
 
 //- (instancetype)initWithData:data
 - (instancetype)init
