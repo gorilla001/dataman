@@ -1,11 +1,6 @@
 
 #import "LoginViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
-
-#import "HomeViewController.h"
-#import "NewViewController.h"
-#import "WarnViewController.h"
-
 #import "Lockbox.h"
 
 @interface LoginViewController ()
