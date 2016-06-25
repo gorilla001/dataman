@@ -1,4 +1,4 @@
-#import "HomeViewController.h"
+#import "AbnormalViewController.h"
 #import "ItemCell.h"
 #import "ItemSectionHeader.h"
 #import "HomeHeader.h"
@@ -9,7 +9,7 @@
 #define ITEMHEIGHT 200
 #define HEADERHEIGHT  210
 
-@interface HomeViewController ()<UICollectionViewDataSource,
+@interface AbnormalViewController ()<UICollectionViewDataSource,
 UICollectionViewDelegate,
 UICollectionViewDelegateFlowLayout,
 HomeHeaderDelegate,
@@ -24,7 +24,7 @@ UIScrollViewDelegate>
 
 @end
 
-@implementation HomeViewController
+@implementation AbnormalViewController
 
 
 - (instancetype)init
@@ -39,7 +39,7 @@ UIScrollViewDelegate>
 
 - (void)layoutNavigationBar
 {
-    self.title = @"首页";
+    self.title = @"异常";
     
 }
 
@@ -47,7 +47,7 @@ UIScrollViewDelegate>
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -133,20 +133,6 @@ UIScrollViewDelegate>
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    ItemSectionHeader *head = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SECTIONHEADER" forIndexPath:indexPath];
-    if (_items) {
-        head.titleLabel.text = @"服务精选";
-        head.line.hidden = NO;
-    }else{
-        head.titleLabel.text = nil;
-        head.line.hidden = YES;
-    }
-    
-    return head;
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     return CGSizeMake(SCREEN_WIDTH, 30);
@@ -221,7 +207,7 @@ UIScrollViewDelegate>
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         [_collectionView registerClass:[ItemCell class] forCellWithReuseIdentifier:@"CAICELL"];
-        [_collectionView registerClass:[ItemSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SECTIONHEADER"];
+//        [_collectionView registerClass:[ItemSectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SECTIONHEADER"];
         
         _collectionView.contentInset = UIEdgeInsetsMake(HEADERHEIGHT, 0, 0, 0);
         [_collectionView addSubview:self.header];

@@ -37,7 +37,7 @@
 
 - (void)layoutNavigationBar
 {
-    self.title = @"应用告警";
+    self.title = @"告警";
 }
 
 

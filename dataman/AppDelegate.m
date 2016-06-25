@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
-#import "HomeViewController.h"
-#import "CartViewController.h"
+#import "AbnormalViewController.h"
+#import "NormalViewController.h"
 #import "WarnViewController.h"
 
 #import "Lockbox.h"
@@ -90,28 +90,28 @@
 
 - (void)changeToMainPage
 {
-    if ([Lockbox unarchiveObjectForKey:@"token"]){
-        UINavigationController *home = [[UINavigationController alloc]initWithRootViewController:HomeViewController.new];
+//    if ([Lockbox unarchiveObjectForKey:@"token"]){
+        UINavigationController *abnormal = [[UINavigationController alloc]initWithRootViewController:AbnormalViewController.new];
     
-        UINavigationController *cart = [[UINavigationController alloc] initWithRootViewController:CartViewController.new];
+        UINavigationController *normal = [[UINavigationController alloc] initWithRootViewController:NormalViewController.new];
     
-        UINavigationController *warn = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
+        UINavigationController *warning = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
     
-        NSArray *titles = @[@"服务", @"购物车", @"我的"];
-        NSArray *images = @[@"home_unselected", @"cart_unselected", @"mine_unselected"];
-        NSArray *selectimages = @[@"home_selected",@"cart_selected",@"mine_selected"];
+        NSArray *titles = @[@"异常", @"正常", @"告警"];
+        NSArray *images = @[@"home_unselected", @"normal_unselected", @"mine_unselected"];
+        NSArray *selectimages = @[@"home_selected",@"normal_selected",@"mine_selected"];
     
         _tabbarController = [[UITabBarController alloc] init];
     
-        _tabbarController.viewControllers = @[home,cart,warn];
+        _tabbarController.viewControllers = @[abnormal,normal,warning];
         [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
         self.window.rootViewController = _tabbarController;
-    }else{
-        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
-        
-        self.window.rootViewController = navLogin;
-    }
+//    }else{
+//        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+//        
+//        self.window.rootViewController = navLogin;
+//    }
 }
 
 @end

@@ -1,5 +1,5 @@
 
-#import "CartViewController.h"
+#import "NormalViewController.h"
 #import "LoginViewController.h"
 #import "NewAppCell.h"
 
@@ -8,7 +8,7 @@
 #define FREIGHT 10
 #define PRICE_LIMIT 49
 
-@interface CartViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface NormalViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) NSMutableArray *listData;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation CartViewController
+@implementation NormalViewController
 
 
 - (instancetype)init
@@ -42,7 +42,7 @@
 
 - (void)layoutNavigationBar
 {
-    self.title = @"购物车";
+    self.title = @"正常";
 }
 
 
