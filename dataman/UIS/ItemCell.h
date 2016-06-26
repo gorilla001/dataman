@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ItemCell : UICollectionViewCell
+@interface ItemCell : UITableViewCell
 
 - (void)configItemCell:data;
+
 @end
 

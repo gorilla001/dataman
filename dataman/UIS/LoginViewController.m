@@ -37,6 +37,7 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
     [self configView];
 }
 
@@ -50,6 +51,7 @@
 - (void)configView
 {
     self.view.backgroundColor = WHITE_COLOR;
+    
     
     [self.view addSubview:self.backView];
     [self.view addSubview:self.scrollView];
@@ -147,8 +149,8 @@
 - (UIImageView *)logoView
 {
     if (!_logoView) {
-        _logoView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2.0, 44, 150, 150)];
-        _logoView.image = [UIImage imageNamed:@""];
+        _logoView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-146)/2.0, 100, 146, 113)];
+        _logoView.image = [UIImage imageNamed:@"logo"];
     }
     return _logoView;
 }

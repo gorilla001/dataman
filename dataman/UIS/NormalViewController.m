@@ -1,30 +1,18 @@
-
 #import "NormalViewController.h"
+#import "ItemCell.h"
+#import <MJRefresh.h>
+#import "ItemDetailViewController.h"
 #import "LoginViewController.h"
-#import "NewAppCell.h"
 
-#define CELL_HEIGHT   60
-#define BOTTOM_HEIGHT 60
-#define FREIGHT 10
-#define PRICE_LIMIT 49
+#define ITEMWIDTH (290/2.0)
+#define ITEMHEIGHT 200
+#define HEADERHEIGHT  210
 
 @interface NormalViewController ()<UITableViewDataSource,UITableViewDelegate>
-
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) NSMutableArray *listData;
-@property (nonatomic, strong) AddressInfo *address;
-
-@property (nonatomic, strong)  NSString *markMessage;
-
-//@property (nonatomic, strong) UIView *emptyView;
-@property (nonatomic, strong) UIButton *loginBtn;
-
-@property (nonatomic, strong) UILabel *name;
-@property (nonatomic, strong) UITextField *nameLabel;
-@property (nonatomic, strong) UITextField *textField;
-
-
-@property (nonatomic) UIEdgeInsets separatorInset NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) NSMutableArray *appData;
+@property (nonatomic, strong) NSMutableArray *statusData;
 
 @end
 
@@ -35,7 +23,10 @@
 {
     if (self = [super init]) {
         [self layoutNavigationBar];
-        _listData = [NSMutableArray arrayWithCapacity:10];
+        _listData = [NSMutableArray arrayWithCapacity:15];
+        _appData = [NSMutableArray arrayWithCapacity:15];
+        _statusData = [NSMutableArray arrayWithCapacity:15];
+        
     }
     return self;
 }
@@ -43,84 +34,56 @@
 - (void)layoutNavigationBar
 {
     self.title = @"正常";
-}
-
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self.view addSubview:self.listView];
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.view addSubview:self.listView];
+    [self.listView.header beginRefreshing];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
-#pragma mark - UITableViewDelegate
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    // Return the number of sections.
+#pragma mark - CollectionDelegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    // Return the number of rows in the section.
     return _listData.count;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-       return CELL_HEIGHT;
+    return 60;
 }
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if (section == 1 || section == 2 ) {
-        return 5;
-    }
-    return 0;
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,5)];
-    view.backgroundColor = RGB_COLOR(242, 242, 242);
-    return view;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIndentifier = @"APPCELL";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+    static NSString *CellIdentifier = @"ITEMCELL";
+    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[ItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    [tableView setSeparatorColor:[UIColor colorWithRed:242.0/255.0f green:242.0/255.0f blue:242.0/255.0f alpha:1.0]];
+    
+    [cell configItemCell:_listData[indexPath.row]];
     
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -134,25 +97,91 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     
-    [tableView setSeparatorColor:[UIColor colorWithRed:242.0/255.0f green:242.0/255.0f blue:242.0/255.0f alpha:1.0]];
-    
-    
     return cell;
+    
 }
+
+#pragma mark - Getter
+- (void)pullToRefresh
+{
+    [HTTPManager getApps:^(id response) {
+        
+        [self.listView.header endRefreshing];
+        self.listView.footer.hidden = NO;
+        
+        [_appData removeAllObjects];
+        [_appData addObjectsFromArray:response[@"data"][@"App"]];
+        [_appData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
+        
+        [HTTPManager getStatus:^(id response) {
+            
+            
+            NSMutableDictionary *status = response[@"data"];
+            [_statusData removeAllObjects];
+            [_statusData addObjectsFromArray:[status allValues]];
+            
+            [_statusData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
+            
+            [_listData removeAllObjects];
+            for (int i = 0; i < _statusData.count; i++){
+                
+                if([[_statusData objectAtIndex: i][@"status"] integerValue] != 10){
+                    [_listData addObject:[_appData objectAtIndex:i]];
+                }
+                
+            }
+            
+            [_listView reloadData];
+            if ([_listData count] <20){
+                self.listView.footer.hidden = YES;
+            }
+            
+            
+        } failure:^(NSError *err) {
+            
+            LoginViewController *controller = [[LoginViewController alloc] init];
+            controller.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:controller animated:YES];
+            
+            [self.listView.header endRefreshing];
+        }];
+    } failure:^(NSError *err) {
+        
+        LoginViewController *controller = [[LoginViewController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+        [self.listView.header endRefreshing];
+    }];
+}
+
+- (void)upToRefresh
+{
+    [self.listView.header endRefreshing];
+}
+
 
 
 #pragma mark - Getter
 - (UITableView *)listView
 {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-110) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-60) style:UITableViewStylePlain];
         _listView.dataSource = self;
         _listView.delegate = self;
-        _listView.backgroundColor = TABLE_COLOR;
         _listView.tableFooterView = [UIView new];
+        _listView.bounces = YES;
         _listView.showsHorizontalScrollIndicator = NO;
         _listView.showsVerticalScrollIndicator = NO;
+        _listView.backgroundColor = RGB_COLOR(242, 242, 242);
         
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullToRefresh)];
+        header.lastUpdatedTimeLabel.hidden = YES;
+        _listView.header = header;
+        
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upToRefresh)];
+        _listView.footer = footer;
+        _listView.footer.hidden = YES;
     }
     return _listView;
 }

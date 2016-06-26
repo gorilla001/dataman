@@ -1,4 +1,4 @@
-#import "AbnormalViewController.h"
+#import "WarningViewController.h"
 #import "ItemCell.h"
 #import <MJRefresh.h>
 #import "ItemDetailViewController.h"
@@ -8,24 +8,21 @@
 #define ITEMHEIGHT 200
 #define HEADERHEIGHT  210
 
-@interface AbnormalViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface WarningViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *listView;
-@property (nonatomic, strong) NSMutableArray *appData;
-@property (nonatomic, strong) NSMutableArray *statusData;
 @property (nonatomic, strong) NSMutableArray *listData;
+@property (nonatomic, strong) NSMutableArray *items;
 
 @end
 
-@implementation AbnormalViewController
+@implementation WarningViewController
 
 
 - (instancetype)init
 {
     if (self = [super init]) {
         [self layoutNavigationBar];
-        _listData = [NSMutableArray arrayWithCapacity:15];
-        _appData = [NSMutableArray arrayWithCapacity:15];
-        _statusData = [NSMutableArray arrayWithCapacity:15];
+        _listData = [NSMutableArray arrayWithCapacity:5];
         
     }
     return self;
@@ -33,7 +30,7 @@
 
 - (void)layoutNavigationBar
 {
-    self.title = @"异常";
+    self.title = @"告警";
     
 }
 
@@ -41,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -70,7 +67,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-       return 60;
+    return 60;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -98,7 +95,7 @@
     }
     
     return cell;
-
+    
 }
 
 #pragma mark - Getter
@@ -109,42 +106,17 @@
         [self.listView.header endRefreshing];
         self.listView.footer.hidden = NO;
         
-        [_appData removeAllObjects];
-        [_appData addObjectsFromArray:response[@"data"][@"App"]];
-        [_appData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
         
-        [HTTPManager getStatus:^(id response) {
-    
-            
-            NSMutableDictionary *status = response[@"data"];
-            [_statusData removeAllObjects];
-            [_statusData addObjectsFromArray:[status allValues]];
-            
-            [_statusData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
-  
-            [_listData removeAllObjects];
-            for (int i = 0; i < _statusData.count; i++){
-
-                if([[_statusData objectAtIndex: i][@"status"] integerValue] == 10){
-                    [_listData addObject:[_appData objectAtIndex:i]];
-                }
-                
-            }
-            
-            [_listView reloadData];
-            if ([_listData count] <20){
-                self.listView.footer.hidden = YES;
-            }
-
-            
-        } failure:^(NSError *err) {
-            
-            LoginViewController *controller = [[LoginViewController alloc] init];
-            controller.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:controller animated:YES];
-            
-            [self.listView.header endRefreshing];
-        }];
+        [_listData removeAllObjects];
+        [_listData addObjectsFromArray:response[@"data"][@"App"]];
+        
+        [self.listView reloadData];
+        
+        DBLog(@"%@", _listData);
+        
+        if ([response count] <20){
+            self.listView.footer.hidden = YES;
+        }
     } failure:^(NSError *err) {
         
         LoginViewController *controller = [[LoginViewController alloc] init];
@@ -153,7 +125,6 @@
         
         [self.listView.header endRefreshing];
     }];
-    
 }
 
 - (void)upToRefresh

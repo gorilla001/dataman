@@ -11,7 +11,7 @@
 
 #import "AbnormalViewController.h"
 #import "NormalViewController.h"
-#import "WarnViewController.h"
+#import "WarningViewController.h"
 
 #import "Lockbox.h"
 
@@ -90,16 +90,16 @@
 
 - (void)changeToMainPage
 {
-//    if ([Lockbox unarchiveObjectForKey:@"token"]){
+    if ([Lockbox unarchiveObjectForKey:@"token"]){
         UINavigationController *abnormal = [[UINavigationController alloc]initWithRootViewController:AbnormalViewController.new];
     
         UINavigationController *normal = [[UINavigationController alloc] initWithRootViewController:NormalViewController.new];
     
-        UINavigationController *warning = [[UINavigationController alloc]initWithRootViewController:WarnViewController.new];
+        UINavigationController *warning = [[UINavigationController alloc]initWithRootViewController:WarningViewController.new];
     
         NSArray *titles = @[@"异常", @"正常", @"告警"];
-        NSArray *images = @[@"home_unselected", @"normal_unselected", @"mine_unselected"];
-        NSArray *selectimages = @[@"home_selected",@"normal_selected",@"mine_selected"];
+        NSArray *images = @[@"abnormal_unselected", @"normal_unselected", @"warning_unselected"];
+        NSArray *selectimages = @[@"abnormal_selected",@"normal_selected",@"warning_selected"];
     
         _tabbarController = [[UITabBarController alloc] init];
     
@@ -107,11 +107,11 @@
         [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
         self.window.rootViewController = _tabbarController;
-//    }else{
-//        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
-//        
-//        self.window.rootViewController = navLogin;
-//    }
+    }else{
+        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+        
+        self.window.rootViewController = navLogin;
+    }
 }
 
 @end
