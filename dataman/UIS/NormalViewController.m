@@ -123,12 +123,15 @@
             [_statusData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
             
             [_listData removeAllObjects];
-            for (int i = 0; i < _statusData.count; i++){
-                
-                if([[_statusData objectAtIndex: i][@"status"] integerValue] != 10){
-                    [_listData addObject:[_appData objectAtIndex:i]];
+
+            for (int i = 0; i < _appData.count; i++){
+                for (int j = 0; j < _statusData.count; j++){
+                    if([[_statusData objectAtIndex: j][@"id"] integerValue] == [[_appData objectAtIndex:i][@"id"] integerValue]){
+                        if([[_statusData objectAtIndex: j][@"status"] integerValue] != 10){
+                            [_listData addObject:[_appData objectAtIndex:i]];
+                        }
+                    }
                 }
-                
             }
             
             [_listView reloadData];
