@@ -50,6 +50,7 @@
     if (!_name) {
         _name = [UILabel new];
         _name.font = FONT(16);
+        _name.textColor = RGB_COLOR(119, 119, 119);
     }
     return _name;
 }
@@ -59,6 +60,7 @@
     if (!_image) {
         _image = [UILabel new];
         _image.font = FONT(16);
+        _image.textColor = RGB_COLOR(119, 119, 119);
     }
     return _image;
 }
@@ -68,6 +70,7 @@
     if (!_version) {
         _version = [UILabel new];
         _version.font = FONT(16);
+        _version.textColor = RGB_COLOR(119, 119, 119);
     }
     return _version;
 }
