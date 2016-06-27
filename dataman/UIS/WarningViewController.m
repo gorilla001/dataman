@@ -110,7 +110,7 @@
         [_listData removeAllObjects];
         [_listData addObjectsFromArray:response[@"data"][@"App"]];
         
-        [self.listView reloadData];
+//        [self.listView reloadData];
         
         DBLog(@"%@", _listData);
         
