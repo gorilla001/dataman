@@ -107,7 +107,7 @@
     [HTTPManager getApps:^(id response) {
         
         [self.listView.header endRefreshing];
-        self.listView.footer.hidden = NO;
+//        self.listView.footer.hidden = NO;
         
         [_appData removeAllObjects];
         [_appData addObjectsFromArray:response[@"data"][@"App"]];
