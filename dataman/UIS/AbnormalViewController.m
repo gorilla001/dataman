@@ -167,7 +167,7 @@
 - (UITableView *)listView
 {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-60) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-49) style:UITableViewStylePlain];
         _listView.dataSource = self;
         _listView.delegate = self;
         _listView.tableFooterView = [UIView new];
