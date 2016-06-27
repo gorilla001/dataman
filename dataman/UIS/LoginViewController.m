@@ -81,6 +81,7 @@
         [HTTPManager login: [_username text]
                     passwd: [_password text]
                    success:^(id response) {
+                       DBLog(@"%@", response);
                        [self hideLoading];
                        if ([response[@"code"] integerValue]){
                            [self showErrorStatusWithTitle:@"用户名或密码错误"];
@@ -92,6 +93,7 @@
                        }
                        
                    } failure:^(NSError *err) {
+                       DBLog(@"%@", err);
                        [self hideLoading];
                        [self showFailureStatusWithTitle:@"服务器繁忙，请稍后重试"];
                    }];

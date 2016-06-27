@@ -2,14 +2,20 @@
 #import "HTTPManager.h"
 #import "Lockbox.h"
 
-static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
+//static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
+static NSString *const BASE_URL = @"https://forward.shurenyun.com/";
 
 @implementation HTTPManager
 
-+ (void)requestWithMethod:(RequestMethodType)methodType url:(NSString *)url parameter:(NSDictionary *)parameter success:(void (^)(id))success failure:(void (^)(NSError *))failure
++ (void)requestWithMethod:(RequestMethodType)methodType
+                      url:(NSString *)url
+                parameter:(NSDictionary *)parameter
+                    token:(NSString *)token
+                  success:(void (^)(id))success
+                  failure:(void (^)(NSError *))failure
 {
     AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
-    
+
     manager.requestSerializer.timeoutInterval = 10;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
@@ -17,14 +23,17 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
     manager.requestSerializer.HTTPShouldHandleCookies = YES;
     
     [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@", [Lockbox unarchiveObjectForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
+//    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@", [Lockbox unarchiveObjectForKey:@"token"]] forHTTPHeaderField:@"Authorization"];
+    if (token != nil) {
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@", token] forHTTPHeaderField:@"Authorization"];
+    }
     manager.operationQueue.maxConcurrentOperationCount = 5;
     
     switch (methodType) {
         case RequestMethodTypeGet:
         {
             //GET请求
-            [manager GET:url parameters:parameter
+            [manager GET:url parameters:parameter 
                  success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                      if (success) {
                     
@@ -44,7 +53,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
             [manager POST:url parameters:parameter
                   success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                       if (success) {
-                          [EWUtils saveCookies];
+//                          [EWUtils saveCookies];
                           success(responseObj);
                           
                           if ([responseObj[@"errcode"] integerValue] == 403|| 2001==[responseObj[@"errcode"] integerValue]) {
@@ -56,6 +65,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
                       }
                   } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
                       if (failure) {
+                          DBLog(@"Error: %@", operation.responseObject);
                           failure(error);
                       }
                   }];
@@ -95,12 +105,13 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
       failure:(void (^)(NSError *err))failure
 {
     NSDictionary *parameter;
-    parameter = @{@"name":name,@"password":passwd};
+    parameter = @{@"email":name,@"password":passwd};
     
 
     [HTTPManager requestWithMethod:RequestMethodTypePost
                                url:@"/api/v3/auth"
                          parameter:parameter
+                             token:nil
                            success:success
                            failure:failure];
 }
@@ -110,6 +121,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
     [HTTPManager requestWithMethod:RequestMethodTypeGet
                                url:@"/api/v3/apps"
                          parameter:nil
+                             token:[Lockbox unarchiveObjectForKey:@"token"]
                            success:success
                            failure:failure];
 }
@@ -119,6 +131,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
     [HTTPManager requestWithMethod:RequestMethodTypeGet
                                url:@"/api/v3/repositories"
                          parameter:nil
+                             token:[Lockbox unarchiveObjectForKey:@"token"]
                            success:success
                            failure:failure];
 }
@@ -128,6 +141,7 @@ static NSString *const BASE_URL = @"http://devforward.dataman-inc.net";
     [HTTPManager requestWithMethod:RequestMethodTypeGet
                                url:@"/api/v3/apps/status"
                          parameter:nil
+                             token:[Lockbox unarchiveObjectForKey:@"token"]
                            success:success
                            failure:failure];
 }
