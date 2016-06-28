@@ -53,15 +53,8 @@ static NSString *const BASE_URL = @"https://forward.shurenyun.com/";
             [manager POST:url parameters:parameter
                   success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                       if (success) {
-//                          [EWUtils saveCookies];
                           success(responseObj);
                           
-                          if ([responseObj[@"errcode"] integerValue] == 403|| 2001==[responseObj[@"errcode"] integerValue]) {
-                              //处理403的问题
-                              POSTNOTIFICATION(@"ERROR403", nil);
-
-                          }
-
                       }
                   } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
                       if (failure) {
@@ -76,15 +69,7 @@ static NSString *const BASE_URL = @"https://forward.shurenyun.com/";
             [manager DELETE:url parameters:parameter
                   success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                       if (success) {
-                          [EWUtils saveCookies];
                           success(responseObj);
-                          
-                          if ([responseObj[@"errcode"] integerValue] == 403|| 2001==[responseObj[@"errcode"] integerValue]) {
-                              //处理403的问题
-                              POSTNOTIFICATION(@"ERROR403", nil);
-                              
-                          }
-                          
                       }
                   } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
                       if (failure) {

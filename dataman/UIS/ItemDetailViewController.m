@@ -355,26 +355,6 @@
 
 }
 
-- (void)toShopCar:(UIButton *)sender
-{
-    DBLog(@"----hello world!!!");
-    
-    [[APPDELEGATE tabbarController] setSelectedIndex:1];
-
-    
-    if (self.navigationController.viewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:NO];
-    }else{
-    
-        [self.navigationController dismissViewControllerAnimated:NO completion:^{
-
-        }];
-    }
-    
-    
-}
-
-
 #pragma mark - topView
 - (UIView *)topView
 {

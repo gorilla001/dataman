@@ -82,7 +82,7 @@
     }
     
     [tableView setSeparatorColor:[UIColor colorWithRed:242.0/255.0f green:242.0/255.0f blue:242.0/255.0f alpha:1.0]];
-    
+
     [cell configItemCell:_listData[indexPath.row]];
     
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -107,7 +107,6 @@
     [HTTPManager getApps:^(id response) {
         
         [self.listView.header endRefreshing];
-//        self.listView.footer.hidden = NO;
         
         [_appData removeAllObjects];
         [_appData addObjectsFromArray:response[@"data"][@"App"]];
@@ -128,12 +127,15 @@
                 for (int j = 0; j < _statusData.count; j++){
                     if([[_statusData objectAtIndex: j][@"id"] integerValue] == [[_appData objectAtIndex:i][@"id"] integerValue]){
                         if([[_statusData objectAtIndex: j][@"status"] integerValue] != 10){
-                            [_listData addObject:[_appData objectAtIndex:i]];
+                            NSString * status = [_statusData objectAtIndex:j][@"status"];
+                            NSString * name = [_statusData objectAtIndex:j][@"name"];
+                            NSDictionary *item = [NSMutableDictionary dictionaryWithObjects:@[name,status] forKeys:@[@"name",@"status"]];
+                            [_listData addObject:item];
                         }
                     }
                 }
             }
-            
+            DBLog(@"%@", _listData);
             [_listView reloadData];
             if ([_listData count] <20){
                 self.listView.footer.hidden = YES;

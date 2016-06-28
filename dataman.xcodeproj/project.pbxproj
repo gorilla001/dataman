@@ -13,20 +13,13 @@
 		EF597CF51C6E18EB00CCBDBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF597CF41C6E18EB00CCBDBD /* libz.tbd */; };
 		EF597CF71C6E191600CCBDBD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF597CF61C6E191600CCBDBD /* libsqlite3.tbd */; };
 		EF60A8C71D1C1078006E1ABB /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8A91D1C1078006E1ABB /* DBManager.m */; };
-		EF60A8C81D1C1078006E1ABB /* HomeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8AB1D1C1078006E1ABB /* HomeHeader.m */; };
 		EF60A8C91D1C1078006E1ABB /* AbnormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8AD1D1C1078006E1ABB /* AbnormalViewController.m */; };
 		EF60A8CA1D1C1078006E1ABB /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8AF1D1C1078006E1ABB /* HTTPManager.m */; };
 		EF60A8CB1D1C1078006E1ABB /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8B11D1C1078006E1ABB /* ItemCell.m */; };
 		EF60A8CC1D1C1078006E1ABB /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8B31D1C1078006E1ABB /* ItemDetailViewController.m */; };
 		EF60A8CD1D1C1078006E1ABB /* ItemSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8B51D1C1078006E1ABB /* ItemSectionHeader.m */; };
 		EF60A8CE1D1C1078006E1ABB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8B71D1C1078006E1ABB /* LoginViewController.m */; };
-		EF60A8CF1D1C1078006E1ABB /* NewAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8B91D1C1078006E1ABB /* NewAppCell.m */; };
 		EF60A8D01D1C1078006E1ABB /* NormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8BB1D1C1078006E1ABB /* NormalViewController.m */; };
-		EF60A8D11D1C1078006E1ABB /* VGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8BE1D1C1078006E1ABB /* VGModel.m */; };
-		EF60A8D21D1C1078006E1ABB /* VGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8C01D1C1078006E1ABB /* VGUtils.m */; };
-		EF60A8D31D1C1078006E1ABB /* WarnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8C21D1C1078006E1ABB /* WarnCell.m */; };
-		EF60A8D41D1C1078006E1ABB /* WarnDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8C41D1C1078006E1ABB /* WarnDetailViewController.m */; };
-		EF60A8D51D1C1078006E1ABB /* WarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8C61D1C1078006E1ABB /* WarningViewController.m */; };
 		EF60A8F51D1C10CD006E1ABB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF60A8F41D1C10CD006E1ABB /* Images.xcassets */; };
 		EF60A8F71D1C10DE006E1ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF60A8F61D1C10DE006E1ABB /* Assets.xcassets */; };
 		EF60A8FA1D1C10F7006E1ABB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60A8F91D1C10F7006E1ABB /* AppDelegate.m */; };
@@ -66,10 +59,6 @@
 		EFDDFDC41D1ECE6E0052735A /* abnormal_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC01D1ECE6E0052735A /* abnormal_selected@3x.png */; };
 		EFDDFDC51D1ECE6E0052735A /* abnormal_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC11D1ECE6E0052735A /* abnormal_unselected@2x.png */; };
 		EFDDFDC61D1ECE6E0052735A /* abnormal_unselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC21D1ECE6E0052735A /* abnormal_unselected@3x.png */; };
-		EFDDFDCB1D1ED32E0052735A /* warning_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC71D1ED32E0052735A /* warning_selected@2x.png */; };
-		EFDDFDCC1D1ED32E0052735A /* warning_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC81D1ED32E0052735A /* warning_selected@3x.png */; };
-		EFDDFDCD1D1ED32E0052735A /* warning_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDC91D1ED32E0052735A /* warning_unselected@2x.png */; };
-		EFDDFDCE1D1ED32E0052735A /* warning_unselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDFDCA1D1ED32E0052735A /* warning_unselected@3x.png */; };
 		EFE109981C6DF847004A869F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE109971C6DF847004A869F /* CoreText.framework */; };
 		EFE1099A1C6DF851004A869F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE109991C6DF851004A869F /* CoreGraphics.framework */; };
 		EFE1099C1C6DF885004A869F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE1099B1C6DF885004A869F /* QuartzCore.framework */; };
@@ -93,8 +82,6 @@
 		EF597CF61C6E191600CCBDBD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EF60A8A81D1C1078006E1ABB /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = dataman/UIS/DBManager.h; sourceTree = SOURCE_ROOT; };
 		EF60A8A91D1C1078006E1ABB /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = dataman/UIS/DBManager.m; sourceTree = SOURCE_ROOT; };
-		EF60A8AA1D1C1078006E1ABB /* HomeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeHeader.h; path = dataman/UIS/HomeHeader.h; sourceTree = SOURCE_ROOT; };
-		EF60A8AB1D1C1078006E1ABB /* HomeHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeHeader.m; path = dataman/UIS/HomeHeader.m; sourceTree = SOURCE_ROOT; };
 		EF60A8AC1D1C1078006E1ABB /* AbnormalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbnormalViewController.h; path = dataman/UIS/AbnormalViewController.h; sourceTree = SOURCE_ROOT; };
 		EF60A8AD1D1C1078006E1ABB /* AbnormalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbnormalViewController.m; path = dataman/UIS/AbnormalViewController.m; sourceTree = SOURCE_ROOT; };
 		EF60A8AE1D1C1078006E1ABB /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPManager.h; path = dataman/UIS/HTTPManager.h; sourceTree = SOURCE_ROOT; };
@@ -107,21 +94,8 @@
 		EF60A8B51D1C1078006E1ABB /* ItemSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemSectionHeader.m; path = dataman/UIS/ItemSectionHeader.m; sourceTree = SOURCE_ROOT; };
 		EF60A8B61D1C1078006E1ABB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = dataman/UIS/LoginViewController.h; sourceTree = SOURCE_ROOT; };
 		EF60A8B71D1C1078006E1ABB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = dataman/UIS/LoginViewController.m; sourceTree = SOURCE_ROOT; };
-		EF60A8B81D1C1078006E1ABB /* NewAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewAppCell.h; path = dataman/UIS/NewAppCell.h; sourceTree = SOURCE_ROOT; };
-		EF60A8B91D1C1078006E1ABB /* NewAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewAppCell.m; path = dataman/UIS/NewAppCell.m; sourceTree = SOURCE_ROOT; };
 		EF60A8BA1D1C1078006E1ABB /* NormalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NormalViewController.h; path = dataman/UIS/NormalViewController.h; sourceTree = SOURCE_ROOT; };
 		EF60A8BB1D1C1078006E1ABB /* NormalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NormalViewController.m; path = dataman/UIS/NormalViewController.m; sourceTree = SOURCE_ROOT; };
-		EF60A8BC1D1C1078006E1ABB /* VGConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGConstant.h; path = dataman/UIS/VGConstant.h; sourceTree = SOURCE_ROOT; };
-		EF60A8BD1D1C1078006E1ABB /* VGModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGModel.h; path = dataman/UIS/VGModel.h; sourceTree = SOURCE_ROOT; };
-		EF60A8BE1D1C1078006E1ABB /* VGModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGModel.m; path = dataman/UIS/VGModel.m; sourceTree = SOURCE_ROOT; };
-		EF60A8BF1D1C1078006E1ABB /* VGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VGUtils.h; path = dataman/UIS/VGUtils.h; sourceTree = SOURCE_ROOT; };
-		EF60A8C01D1C1078006E1ABB /* VGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VGUtils.m; path = dataman/UIS/VGUtils.m; sourceTree = SOURCE_ROOT; };
-		EF60A8C11D1C1078006E1ABB /* WarnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WarnCell.h; path = dataman/UIS/WarnCell.h; sourceTree = SOURCE_ROOT; };
-		EF60A8C21D1C1078006E1ABB /* WarnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WarnCell.m; path = dataman/UIS/WarnCell.m; sourceTree = SOURCE_ROOT; };
-		EF60A8C31D1C1078006E1ABB /* WarnDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WarnDetailViewController.h; path = dataman/UIS/WarnDetailViewController.h; sourceTree = SOURCE_ROOT; };
-		EF60A8C41D1C1078006E1ABB /* WarnDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WarnDetailViewController.m; path = dataman/UIS/WarnDetailViewController.m; sourceTree = SOURCE_ROOT; };
-		EF60A8C51D1C1078006E1ABB /* WarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WarningViewController.h; path = dataman/UIS/WarningViewController.h; sourceTree = SOURCE_ROOT; };
-		EF60A8C61D1C1078006E1ABB /* WarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WarningViewController.m; path = dataman/UIS/WarningViewController.m; sourceTree = SOURCE_ROOT; };
 		EF60A8F41D1C10CD006E1ABB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dataman/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		EF60A8F61D1C10DE006E1ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = dataman/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		EF60A8F81D1C10F7006E1ABB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dataman/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -194,10 +168,6 @@
 		EFDDFDC01D1ECE6E0052735A /* abnormal_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "abnormal_selected@3x.png"; path = "dataman/Images/abnormal_selected@3x.png"; sourceTree = SOURCE_ROOT; };
 		EFDDFDC11D1ECE6E0052735A /* abnormal_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "abnormal_unselected@2x.png"; path = "dataman/Images/abnormal_unselected@2x.png"; sourceTree = SOURCE_ROOT; };
 		EFDDFDC21D1ECE6E0052735A /* abnormal_unselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "abnormal_unselected@3x.png"; path = "dataman/Images/abnormal_unselected@3x.png"; sourceTree = SOURCE_ROOT; };
-		EFDDFDC71D1ED32E0052735A /* warning_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_selected@2x.png"; path = "dataman/Images/warning_selected@2x.png"; sourceTree = SOURCE_ROOT; };
-		EFDDFDC81D1ED32E0052735A /* warning_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_selected@3x.png"; path = "dataman/Images/warning_selected@3x.png"; sourceTree = SOURCE_ROOT; };
-		EFDDFDC91D1ED32E0052735A /* warning_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_unselected@2x.png"; path = "dataman/Images/warning_unselected@2x.png"; sourceTree = SOURCE_ROOT; };
-		EFDDFDCA1D1ED32E0052735A /* warning_unselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning_unselected@3x.png"; path = "dataman/Images/warning_unselected@3x.png"; sourceTree = SOURCE_ROOT; };
 		EFE109971C6DF847004A869F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EFE109991C6DF851004A869F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EFE1099B1C6DF885004A869F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -330,8 +300,6 @@
 			children = (
 				EF60A8A81D1C1078006E1ABB /* DBManager.h */,
 				EF60A8A91D1C1078006E1ABB /* DBManager.m */,
-				EF60A8AA1D1C1078006E1ABB /* HomeHeader.h */,
-				EF60A8AB1D1C1078006E1ABB /* HomeHeader.m */,
 				EF60A8AC1D1C1078006E1ABB /* AbnormalViewController.h */,
 				EF60A8AD1D1C1078006E1ABB /* AbnormalViewController.m */,
 				EF60A8AE1D1C1078006E1ABB /* HTTPManager.h */,
@@ -345,21 +313,8 @@
 				EF60A8B51D1C1078006E1ABB /* ItemSectionHeader.m */,
 				EF60A8B61D1C1078006E1ABB /* LoginViewController.h */,
 				EF60A8B71D1C1078006E1ABB /* LoginViewController.m */,
-				EF60A8B81D1C1078006E1ABB /* NewAppCell.h */,
-				EF60A8B91D1C1078006E1ABB /* NewAppCell.m */,
 				EF60A8BA1D1C1078006E1ABB /* NormalViewController.h */,
 				EF60A8BB1D1C1078006E1ABB /* NormalViewController.m */,
-				EF60A8BC1D1C1078006E1ABB /* VGConstant.h */,
-				EF60A8BD1D1C1078006E1ABB /* VGModel.h */,
-				EF60A8BE1D1C1078006E1ABB /* VGModel.m */,
-				EF60A8BF1D1C1078006E1ABB /* VGUtils.h */,
-				EF60A8C01D1C1078006E1ABB /* VGUtils.m */,
-				EF60A8C11D1C1078006E1ABB /* WarnCell.h */,
-				EF60A8C21D1C1078006E1ABB /* WarnCell.m */,
-				EF60A8C31D1C1078006E1ABB /* WarnDetailViewController.h */,
-				EF60A8C41D1C1078006E1ABB /* WarnDetailViewController.m */,
-				EF60A8C51D1C1078006E1ABB /* WarningViewController.h */,
-				EF60A8C61D1C1078006E1ABB /* WarningViewController.m */,
 			);
 			path = UIS;
 			sourceTree = "<group>";
@@ -379,10 +334,6 @@
 				EFF9EAF41D1FF82A009B2117 /* logo.png */,
 				EFF9EAF21D1FF586009B2117 /* background.png */,
 				EFF9EAEF1D1FD3A7009B2117 /* abnormal_selected2@2x.png */,
-				EFDDFDC71D1ED32E0052735A /* warning_selected@2x.png */,
-				EFDDFDC81D1ED32E0052735A /* warning_selected@3x.png */,
-				EFDDFDC91D1ED32E0052735A /* warning_unselected@2x.png */,
-				EFDDFDCA1D1ED32E0052735A /* warning_unselected@3x.png */,
 				EFDDFDC01D1ECE6E0052735A /* abnormal_selected@3x.png */,
 				EFDDFDC11D1ECE6E0052735A /* abnormal_unselected@2x.png */,
 				EFDDFDC21D1ECE6E0052735A /* abnormal_unselected@3x.png */,
@@ -539,16 +490,12 @@
 				EFDDFDC51D1ECE6E0052735A /* abnormal_unselected@2x.png in Resources */,
 				EFF9EAF31D1FF586009B2117 /* background.png in Resources */,
 				EFDDFDC41D1ECE6E0052735A /* abnormal_selected@3x.png in Resources */,
-				EFDDFDCB1D1ED32E0052735A /* warning_selected@2x.png in Resources */,
 				EF60A9661D1E584F006E1ABB /* normal_selected@2x.png in Resources */,
 				EFF9EAF51D1FF82A009B2117 /* logo.png in Resources */,
-				EFDDFDCD1D1ED32E0052735A /* warning_unselected@2x.png in Resources */,
 				EF60A8F71D1C10DE006E1ABB /* Assets.xcassets in Resources */,
 				EFDDFDC61D1ECE6E0052735A /* abnormal_unselected@3x.png in Resources */,
 				EF60A8F51D1C10CD006E1ABB /* Images.xcassets in Resources */,
 				EF60A95D1D1C150A006E1ABB /* LaunchScreen.storyboard in Resources */,
-				EFDDFDCE1D1ED32E0052735A /* warning_unselected@3x.png in Resources */,
-				EFDDFDCC1D1ED32E0052735A /* warning_selected@3x.png in Resources */,
 				EFF9EAF01D1FD3A7009B2117 /* abnormal_selected2@2x.png in Resources */,
 				EF60A9671D1E584F006E1ABB /* normal_selected@3x.png in Resources */,
 				EF60A9681D1E584F006E1ABB /* normal_unselected@2x.png in Resources */,
@@ -624,9 +571,7 @@
 				EF60A8D01D1C1078006E1ABB /* NormalViewController.m in Sources */,
 				EF60A90D1D1C128B006E1ABB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				EF60A9521D1C12AA006E1ABB /* EWViewController.m in Sources */,
-				EF60A8CF1D1C1078006E1ABB /* NewAppCell.m in Sources */,
 				EF60A9501D1C12AA006E1ABB /* EWTextField.m in Sources */,
-				EF60A8C81D1C1078006E1ABB /* HomeHeader.m in Sources */,
 				EF60A8CE1D1C1078006E1ABB /* LoginViewController.m in Sources */,
 				EF60A9511D1C12AA006E1ABB /* EWTextView.m in Sources */,
 				EF60A90B1D1C128B006E1ABB /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -637,9 +582,7 @@
 				EF60A94F1D1C12AA006E1ABB /* EWPhotoViewer.m in Sources */,
 				EF60A8CD1D1C1078006E1ABB /* ItemSectionHeader.m in Sources */,
 				EF60A9451D1C12AA006E1ABB /* NSString+Extension.m in Sources */,
-				EF60A8D41D1C1078006E1ABB /* WarnDetailViewController.m in Sources */,
 				EF60A8FA1D1C10F7006E1ABB /* AppDelegate.m in Sources */,
-				EF60A8D21D1C1078006E1ABB /* VGUtils.m in Sources */,
 				EF60A9541D1C12AA006E1ABB /* UIView+Extension.m in Sources */,
 				EF60A94D1D1C12AA006E1ABB /* EWFocusView.m in Sources */,
 				EF60A8C91D1C1078006E1ABB /* AbnormalViewController.m in Sources */,
@@ -648,12 +591,9 @@
 				EF60A9421D1C12AA006E1ABB /* NSData+Extension.m in Sources */,
 				EF60A8CB1D1C1078006E1ABB /* ItemCell.m in Sources */,
 				EF60A9551D1C12AA006E1ABB /* UIView+Shadow.m in Sources */,
-				EF60A8D31D1C1078006E1ABB /* WarnCell.m in Sources */,
-				EF60A8D51D1C1078006E1ABB /* WarningViewController.m in Sources */,
 				EF60A9481D1C12AA006E1ABB /* UIFont+Extension.m in Sources */,
 				EF60A8C71D1C1078006E1ABB /* DBManager.m in Sources */,
 				EF60A9491D1C12AA006E1ABB /* UIImage+Extension.m in Sources */,
-				EF60A8D11D1C1078006E1ABB /* VGModel.m in Sources */,
 				EF60A9471D1C12AA006E1ABB /* UIAlertView+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,13 +22,9 @@
 
 //local
 #import "HTTPManager.h"
-#import "VGConstant.h"
 #import "EasyWork.h"
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
-#import "VGModel.h"
-#import "VGUtils.h"
-#import "DBManager.h"
-//#import "ShareView.h"
 
+#import "DBManager.h"
 
 #endif /* pch_pch */

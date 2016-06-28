@@ -6,8 +6,8 @@
 
 @interface ItemCell ()
 @property (nonatomic, strong) UILabel *name;
-@property (nonatomic, strong) UILabel *image;
-@property (nonatomic, strong) UILabel *version;
+@property (nonatomic, strong) UILabel *status;
+@property (nonatomic, strong) UIView *image;
 @end
 
 @implementation ItemCell
@@ -19,8 +19,8 @@
         self.clipsToBounds = YES;
         
         [self addSubview:self.name];
+        [self addSubview:self.status];
         [self addSubview:self.image];
-        [self addSubview:self.version];
     }
     return self;
 }
@@ -28,11 +28,45 @@
 
 - (void)configItemCell:data
 {
-   
     self.name.text = data[@"name"];
-    self.image.text = data[@"imageName"];
-    self.version.text = data[@"imageVersion"];
-
+    switch ([data[@"status"] integerValue]) {
+        case 1:
+            self.status.text = @"部署中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+        case 2:
+            self.status.text = @"运行中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 102);
+            break;
+        case 3:
+            self.status.text = @"已停止";
+            self.image.backgroundColor = RGB_COLOR(136, 136, 136);
+            break;
+        case 4:
+            self.status.text = @"停止中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+        case 5:
+            self.status.text = @"删除中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+        case 6:
+            self.status.text = @"扩张中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+        case 7:
+            self.status.text = @"启动中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+        case 8:
+            self.status.text = @"撤销中";
+            self.image.backgroundColor = RGB_COLOR(0, 204, 255);
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 
@@ -40,9 +74,9 @@
 {
     [super layoutSubviews];
     
-    self.name.frame = CGRectMake(10, 0, self.width/4, 60);
-    self.image.frame = CGRectMake(self.name.right, 0, self.width/2, 60);
-    self.version.frame = CGRectMake(self.image.right, 0, self.width/4, 60);
+    self.name.frame = CGRectMake(10, 0, self.width/2, 60);
+    self.status.frame = CGRectMake(self.right-120, 0, 60, 60);
+    self.image.frame = CGRectMake(self.status.right+20, 22.5, 15, 15);
 }
 
 - (UILabel *)name
@@ -55,25 +89,25 @@
     return _name;
 }
 
-- (UILabel *)image
+- (UILabel *)status
 {
-    if (!_image) {
-        _image = [UILabel new];
-        _image.font = FONT(16);
-        _image.textColor = RGB_COLOR(119, 119, 119);
+    if (!_status) {
+        _status = [UILabel new];
+        _status.font = FONT(16);
+        _status.textColor = RGB_COLOR(119, 119, 119);
     }
+    return _status;
+}
+
+- (UIView *) image
+{
+    if (!_image){
+        _image =  [[UIView alloc] initWithFrame:CGRectZero];
+        _image.layer.cornerRadius = 7.5;
+        _image.layer.masksToBounds = YES;
+    }
+    
     return _image;
 }
-
-- (UILabel *)version
-{
-    if (!_version) {
-        _version = [UILabel new];
-        _version.font = FONT(16);
-        _version.textColor = RGB_COLOR(119, 119, 119);
-    }
-    return _version;
-}
-
 
 @end

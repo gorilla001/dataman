@@ -10,7 +10,6 @@
 
 #import "AbnormalViewController.h"
 #import "NormalViewController.h"
-#import "WarningViewController.h"
 
 @implementation AppDelegate
 
@@ -85,15 +84,13 @@
     
         UINavigationController *normal = [[UINavigationController alloc] initWithRootViewController:NormalViewController.new];
     
-        UINavigationController *warning = [[UINavigationController alloc]initWithRootViewController:WarningViewController.new];
-    
-        NSArray *titles = @[@"异常", @"正常", @"告警"];
-        NSArray *images = @[@"abnormal_unselected", @"normal_unselected", @"warning_unselected"];
-        NSArray *selectimages = @[@"abnormal_selected",@"normal_selected",@"warning_selected"];
+        NSArray *titles = @[@"异常", @"正常"];
+        NSArray *images = @[@"abnormal_unselected", @"normal_unselected"];
+        NSArray *selectimages = @[@"abnormal_selected",@"normal_selected"];
     
         _tabbarController = [[UITabBarController alloc] init];
     
-        _tabbarController.viewControllers = @[abnormal,normal,warning];
+        _tabbarController.viewControllers = @[abnormal,normal];
         [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
         self.window.rootViewController = _tabbarController;
