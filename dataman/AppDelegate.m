@@ -7,13 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
 
 #import "AbnormalViewController.h"
 #import "NormalViewController.h"
 #import "WarningViewController.h"
-
-#import "Lockbox.h"
 
 @implementation AppDelegate
 
@@ -37,13 +34,7 @@
 
     [[DBManager instance] createDB];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jump:) name:@"JUMP" object:nil];
-    
     return YES;
-}
-
-- (void)jump:(NSNotification *)noti {
-    [self.tabbarController setSelectedIndex:0];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -90,7 +81,6 @@
 
 - (void)changeToMainPage
 {
-    if ([Lockbox unarchiveObjectForKey:@"token"]){
         UINavigationController *abnormal = [[UINavigationController alloc]initWithRootViewController:AbnormalViewController.new];
     
         UINavigationController *normal = [[UINavigationController alloc] initWithRootViewController:NormalViewController.new];
@@ -107,11 +97,6 @@
         [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
         self.window.rootViewController = _tabbarController;
-    }else{
-        UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
-        
-        self.window.rootViewController = navLogin;
-    }
 }
 
 @end

@@ -1352,7 +1352,7 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
-      location = "group:/Users/nmg/Dataman/dataman/dataman.xcodeproj">
+      location = "group:dataman.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
