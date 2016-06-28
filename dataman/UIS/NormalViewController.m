@@ -135,7 +135,7 @@
                     }
                 }
             }
-            DBLog(@"%@", _listData);
+
             [_listView reloadData];
             if ([_listData count] <20){
                 self.listView.footer.hidden = YES;

@@ -10,6 +10,7 @@
 
 #import "AbnormalViewController.h"
 #import "NormalViewController.h"
+#import "MissingViewController.h"
 
 @implementation AppDelegate
 
@@ -82,15 +83,17 @@
 {
         UINavigationController *abnormal = [[UINavigationController alloc]initWithRootViewController:AbnormalViewController.new];
     
+    UINavigationController *missing = [[UINavigationController alloc] initWithRootViewController:MissingViewController.new];
+    
         UINavigationController *normal = [[UINavigationController alloc] initWithRootViewController:NormalViewController.new];
     
-        NSArray *titles = @[@"异常", @"正常"];
-        NSArray *images = @[@"abnormal_unselected", @"normal_unselected"];
-        NSArray *selectimages = @[@"abnormal_selected",@"normal_selected"];
+        NSArray *titles = @[@"异常", @"失联", @"正常"];
+        NSArray *images = @[@"abnormal_unselected", @"missing_unselected", @"normal_unselected"];
+        NSArray *selectimages = @[@"abnormal_selected",@"missing_selected", @"normal_selected"];
     
         _tabbarController = [[UITabBarController alloc] init];
     
-        _tabbarController.viewControllers = @[abnormal,normal];
+        _tabbarController.viewControllers = @[abnormal,missing, normal];
         [_tabbarController ew_configTabBarItemWithTitles:titles font:FONT(12) titleColor:RGB_COLOR(164, 162, 154) selectedTitleColor:RGB_COLOR(17,194, 88) images:images selectedImages:selectimages barBackgroundImage:nil];
     
         self.window.rootViewController = _tabbarController;

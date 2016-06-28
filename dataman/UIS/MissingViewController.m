@@ -1,4 +1,4 @@
-#import "AbnormalViewController.h"
+#import "MissingViewController.h"
 #import "ItemCell.h"
 #import <MJRefresh.h>
 #import "ItemDetailViewController.h"
@@ -8,15 +8,15 @@
 #define ITEMHEIGHT 200
 #define HEADERHEIGHT  210
 
-@interface AbnormalViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MissingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *listView;
+@property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) NSMutableArray *appData;
 @property (nonatomic, strong) NSMutableArray *statusData;
-@property (nonatomic, strong) NSMutableArray *listData;
 
 @end
 
-@implementation AbnormalViewController
+@implementation MissingViewController
 
 
 - (instancetype)init
@@ -33,7 +33,7 @@
 
 - (void)layoutNavigationBar
 {
-    self.title = @"异常";
+    self.title = @"失联";
     
 }
 
@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -70,7 +70,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-       return 60;
+    return 60;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -82,7 +82,7 @@
     }
     
     [tableView setSeparatorColor:[UIColor colorWithRed:242.0/255.0f green:242.0/255.0f blue:242.0/255.0f alpha:1.0]];
-    
+
     [cell configItemCell:_listData[indexPath.row]];
     
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -98,7 +98,7 @@
     }
     
     return cell;
-
+    
 }
 
 #pragma mark - Getter
@@ -107,27 +107,26 @@
     [HTTPManager getApps:^(id response) {
         
         [self.listView.header endRefreshing];
-//        self.listView.footer.hidden = NO;
         
         [_appData removeAllObjects];
         [_appData addObjectsFromArray:response[@"data"][@"App"]];
         [_appData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
         
         [HTTPManager getStatus:^(id response) {
-    
+            
             
             NSMutableDictionary *status = response[@"data"];
             [_statusData removeAllObjects];
             [_statusData addObjectsFromArray:[status allValues]];
             
             [_statusData sortUsingDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES], nil]];
-  
-            [_listData removeAllObjects];
             
+            [_listData removeAllObjects];
+
             for (int i = 0; i < _appData.count; i++){
                 for (int j = 0; j < _statusData.count; j++){
                     if([[_statusData objectAtIndex: j][@"id"] integerValue] == [[_appData objectAtIndex:i][@"id"] integerValue]){
-                        if([[_statusData objectAtIndex: j][@"status"] integerValue] == 10){
+                        if([[_statusData objectAtIndex: j][@"status"] integerValue] == 9){
                             NSString * status = [_statusData objectAtIndex:j][@"status"];
                             NSString * name = [_statusData objectAtIndex:j][@"name"];
                             NSDictionary *item = [NSMutableDictionary dictionaryWithObjects:@[name,status] forKeys:@[@"name",@"status"]];
@@ -141,7 +140,7 @@
             if ([_listData count] <20){
                 self.listView.footer.hidden = YES;
             }
-
+            
             
         } failure:^(NSError *err) {
             
@@ -159,7 +158,6 @@
         
         [self.listView.header endRefreshing];
     }];
-    
 }
 
 - (void)upToRefresh
@@ -173,7 +171,7 @@
 - (UITableView *)listView
 {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-49) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  SCREEN_HEIGHT-60) style:UITableViewStylePlain];
         _listView.dataSource = self;
         _listView.delegate = self;
         _listView.tableFooterView = [UIView new];

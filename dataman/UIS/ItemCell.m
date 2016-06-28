@@ -62,6 +62,7 @@
             self.status.text = @"撤销中";
             self.image.backgroundColor = RGB_COLOR(0, 204, 255);
             break;
+        
             
         default:
             break;
