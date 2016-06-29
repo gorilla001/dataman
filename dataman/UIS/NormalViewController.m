@@ -101,6 +101,16 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ItemDetailViewController *controller = [[ItemDetailViewController alloc] init];
+    controller.id = _listData[indexPath.row][@"id"];
+    controller.cid = _listData[indexPath.row][@"cid"];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
 #pragma mark - Getter
 - (void)pullToRefresh
 {
@@ -127,9 +137,11 @@
                 for (int j = 0; j < _statusData.count; j++){
                     if([[_statusData objectAtIndex: j][@"id"] integerValue] == [[_appData objectAtIndex:i][@"id"] integerValue]){
                         if([[_statusData objectAtIndex: j][@"status"] integerValue] != 10){
+                            NSString * id = [_statusData objectAtIndex:j][@"id"];
+                            NSString * cid = [_statusData objectAtIndex:j][@"cid"];
                             NSString * status = [_statusData objectAtIndex:j][@"status"];
                             NSString * name = [_statusData objectAtIndex:j][@"name"];
-                            NSDictionary *item = [NSMutableDictionary dictionaryWithObjects:@[name,status] forKeys:@[@"name",@"status"]];
+                            NSDictionary *item = [NSMutableDictionary dictionaryWithObjects:@[id, cid, name,status] forKeys:@[@"id",@"cid",@"name",@"status"]];
                             [_listData addObject:item];
                         }
                     }
