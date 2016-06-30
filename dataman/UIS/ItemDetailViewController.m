@@ -183,6 +183,14 @@
             [cell setLayoutMargins:UIEdgeInsetsZero];
         }
 
+    switch (indexPath.row) {
+        case 0:
+            <#statements#>
+            break;
+            
+        default:
+            break;
+    }
         return cell;
     
 }
