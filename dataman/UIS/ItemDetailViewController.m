@@ -5,6 +5,7 @@
 
 @interface ItemDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)NSDictionary *item;
+@property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UIButton *startButton;
 @property (nonatomic, strong) UIButton *stopButton;
@@ -77,14 +78,20 @@
         [self hideLoading];
         
         _item = response[@"data"];
+        [HTTPManager getAppStatus:self.id cid: self.cid success:^(NSDictionary *response) {;
+            _status = response[@"data"][@"status"];
+        }failure:^(NSError *err) {
+            _status = @"UNKNOWN";
+        }];
+
         [self configView];
-        
         
     } failure:^(NSError *err) {
         DBLog(@"%@", err);
         [self hideLoading];
         [self showFailureStatusWithTitle:@"服务器繁忙请稍候重试"];
     }];
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -120,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-     return _item.count;
+     return 10;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,8 +171,7 @@
         static NSString *cellIndentifier = @"DETAILCELL";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
             
         }
     
@@ -182,12 +188,110 @@
         if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
             [cell setLayoutMargins:UIEdgeInsetsZero];
         }
-
+    DBLog(@"%@", [NSString stringWithFormat:@"%@", _item[@"id"]]);
     switch (indexPath.row) {
         case 0:
-            <#statements#>
+            cell.textLabel.text = @"ID";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"id"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
-            
+        case 1:
+            cell.textLabel.text = @"NAME";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"name"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 2:
+            cell.textLabel.text = @"ALIAS";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"alias"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 3:
+            cell.textLabel.text = @"CID";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"cid"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 4:
+            cell.textLabel.text = @"CPU";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"cpus"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+
+        case 5:
+            cell.textLabel.text = @"MEM";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"mem"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 6:
+            cell.textLabel.text = @"NETWORK";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"network"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 7:
+            cell.textLabel.text = @"IMAGE";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"imageName"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 8:
+            cell.textLabel.text = @"VERSION";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@", _item[@"imageVersion"]];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 9:
+            cell.textLabel.text = @"STATUS";
+            cell.textLabel.font = FONT(16);
+            cell.textLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",_status];
+            cell.detailTextLabel.textColor = RGB_COLOR(119, 119, 119);
+            cell.detailTextLabel.font = FONT(16);
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+
         default:
             break;
     }
@@ -207,7 +311,7 @@
 {
     if (!_bottomView) {
         _bottomView = [UIView new];
-        _bottomView.frame = CGRectMake(0, self.listView.bottom, SCREEN_WIDTH, 50);
+        _bottomView.frame = CGRectMake(0, self.listView.bottom, SCREEN_WIDTH, 51);
     }
     return _bottomView;
 }
@@ -266,7 +370,7 @@
 - (UITableView *)listView
 {
     if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100) style:UITableViewStylePlain];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-110) style:UITableViewStylePlain];
         _listView.dataSource = self;
         _listView.delegate = self;
         _listView.backgroundColor = RGB_COLOR(242, 242, 242);

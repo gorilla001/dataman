@@ -144,5 +144,19 @@ static NSString *const BASE_URL = @"https://forward.shurenyun.com/";
                            failure:failure];
 }
 
++ (void)getAppStatus:(NSString *)id
+             cid:(NSString *)cid
+             success:(void (^)(id))success
+             failure:(void (^)(NSError *))failure
+{
+    [HTTPManager requestWithMethod:RequestMethodTypeGet
+                               url:[NSString stringWithFormat:@"%@%@%@%@%@",@"/api/v3/clusters/", cid, @"/apps/", id, @"/status"]
+                         parameter:nil
+                             token:[Lockbox unarchiveObjectForKey:@"token"]
+                           success:success
+                           failure:failure];
+}
+
+
 
 @end

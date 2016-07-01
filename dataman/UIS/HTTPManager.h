@@ -39,6 +39,11 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
         success:(void (^)(id response))success
         failure:(void (^)(NSError *err))failure;
 
++ (void)getAppStatus:(NSString *)id
+                 cid:(NSString *)cid
+             success:(void (^)(id))success
+             failure:(void (^)(NSError *))failure;
+
 + (void)getApps:(void (^)(id))success
         failure:(void (^)(NSError *))failure;
 
