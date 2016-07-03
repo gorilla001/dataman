@@ -2,6 +2,8 @@
 #import "ItemDetailViewController.h"
 #import "LoginViewController.h"
 
+#define HEADER_HEIGHT 64
+#define BOTTOM_HEIGHT 50
 
 @interface ItemDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong)NSDictionary *item;
@@ -87,7 +89,6 @@
         [self configView];
         
     } failure:^(NSError *err) {
-        DBLog(@"%@", err);
         [self hideLoading];
         [self showFailureStatusWithTitle:@"服务器繁忙请稍候重试"];
     }];
@@ -141,23 +142,6 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 6;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,6)];
-    view.backgroundColor = RGB_COLOR(242, 242, 242);
-    return view;
-}
-
 
 //计算一下第一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,7 +172,7 @@
         if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
             [cell setLayoutMargins:UIEdgeInsetsZero];
         }
-    DBLog(@"%@", [NSString stringWithFormat:@"%@", _item[@"id"]]);
+    
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"ID";
@@ -306,12 +290,31 @@
     [self showLoading];
     
 }
+- (UITableView *)listView
+{
+    if (!_listView) {
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                                  0,
+                                                                  SCREEN_WIDTH,
+                                                                  SCREEN_HEIGHT-BOTTOM_HEIGHT-HEADER_HEIGHT)
+                                                 style:UITableViewStylePlain];
+        _listView.dataSource = self;
+        _listView.delegate = self;
+        _listView.backgroundColor = RGB_COLOR(242, 242, 242);
+        _listView.tableFooterView = [UIView new];
+        _listView.showsHorizontalScrollIndicator = NO;
+        _listView.showsVerticalScrollIndicator = NO;
+    }
+    return _listView;
+}
+
 
 - (UIView *)bottomView
 {
     if (!_bottomView) {
         _bottomView = [UIView new];
-        _bottomView.frame = CGRectMake(0, self.listView.bottom, SCREEN_WIDTH, 51);
+        _bottomView.frame = CGRectMake(0, self.listView.bottom, SCREEN_WIDTH, BOTTOM_HEIGHT);
+        _bottomView.backgroundColor = RED_COLOR;
     }
     return _bottomView;
 }
@@ -321,7 +324,7 @@
 {
     if (!_startButton) {
         _startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _startButton.frame = CGRectMake(0, 0, SCREEN_WIDTH/3, 51);
+        _startButton.frame = CGRectMake(0, 0, SCREEN_WIDTH/3, BOTTOM_HEIGHT);
         _startButton.backgroundColor = RGB_COLOR(51, 153, 0);
         [_startButton setTitleColor: WHITE_COLOR forState:UIControlStateNormal];
         _startButton.titleLabel.font = FONT(14);
@@ -338,7 +341,7 @@
 {
     if (!_stopButton) {
         _stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _stopButton.frame = CGRectMake(self.startButton.right, 0, SCREEN_WIDTH/3, 51);
+        _stopButton.frame = CGRectMake(self.startButton.right, 0, SCREEN_WIDTH/3, BOTTOM_HEIGHT);
         _stopButton.backgroundColor = RGB_COLOR(102, 204, 255);
         [_stopButton setTitleColor: WHITE_COLOR forState:UIControlStateNormal];
         _stopButton.titleLabel.font = FONT(14);
@@ -362,23 +365,10 @@
         _deleteButton.clipsToBounds = YES;
 //        [_carBtn addTarget:self action:@selector(addShopCar:) forControlEvents:UIControlEventTouchUpInside];
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        _deleteButton.frame = CGRectMake(self.stopButton.right, 0, SCREEN_WIDTH/3, 51);
+        _deleteButton.frame = CGRectMake(self.stopButton.right, 0, SCREEN_WIDTH/3, BOTTOM_HEIGHT);
     }
     return _deleteButton;
 }
 
-- (UITableView *)listView
-{
-    if (!_listView) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-110) style:UITableViewStylePlain];
-        _listView.dataSource = self;
-        _listView.delegate = self;
-        _listView.backgroundColor = RGB_COLOR(242, 242, 242);
-        _listView.tableFooterView = [UIView new];
-        _listView.showsHorizontalScrollIndicator = NO;
-        _listView.showsVerticalScrollIndicator = NO;
-    }
-    return _listView;
-}
 
 @end
